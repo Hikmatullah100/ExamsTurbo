@@ -1,0 +1,190 @@
+{
+  "Alibaba Cloud": {
+    "slug": "alibabacloud",
+    "file": "alibaba-cloud.svg"
+  },
+  "Android": {
+    "slug": "android",
+    "file": "android.svg"
+  },
+  "Anthropic": {
+    "slug": "anthropic",
+    "file": "anthropic.svg"
+  },
+  "Apple": {
+    "slug": "apple",
+    "file": "apple.svg"
+  },
+  "Autodesk": {
+    "slug": "autodesk",
+    "file": "autodesk.svg"
+  },
+  "Cisco": {
+    "slug": "cisco",
+    "file": "cisco.svg"
+  },
+  "Citrix": {
+    "slug": "citrix",
+    "file": "citrix.svg"
+  },
+  "CloudBees": {
+    "slug": "cloudbees",
+    "file": "cloudbees.svg"
+  },
+  "Cloudera": {
+    "slug": "cloudera",
+    "file": "cloudera.svg"
+  },
+  "CompTIA": {
+    "slug": "comptia",
+    "file": "comptia.svg"
+  },
+  "Databricks": {
+    "slug": "databricks",
+    "file": "databricks.svg"
+  },
+  "Docker": {
+    "slug": "docker",
+    "file": "docker.svg"
+  },
+  "Dynatrace": {
+    "slug": "dynatrace",
+    "file": "dynatrace.svg"
+  },
+  "Esri": {
+    "slug": "esri",
+    "file": "esri.svg"
+  },
+  "F5": {
+    "slug": "f5",
+    "file": "f5.svg"
+  },
+  "Facebook": {
+    "slug": "facebook",
+    "file": "facebook.svg"
+  },
+  "Fortinet": {
+    "slug": "fortinet",
+    "file": "fortinet.svg"
+  },
+  "GitHub": {
+    "slug": "github",
+    "file": "github.svg"
+  },
+  "Google": {
+    "slug": "google",
+    "file": "google.svg"
+  },
+  "HashiCorp": {
+    "slug": "hashicorp",
+    "file": "hashicorp.svg"
+  },
+  "Hitachi": {
+    "slug": "hitachi",
+    "file": "hitachi.svg"
+  },
+  "HP": {
+    "slug": "hp",
+    "file": "hp.svg"
+  },
+  "Huawei": {
+    "slug": "huawei",
+    "file": "huawei.svg"
+  },
+  "Lenovo": {
+    "slug": "lenovo",
+    "file": "lenovo.svg"
+  },
+  "Linux Foundation": {
+    "slug": "linuxfoundation",
+    "file": "linux-foundation.svg"
+  },
+  "McAfee": {
+    "slug": "mcafee",
+    "file": "mcafee.svg"
+  },
+  "MikroTik": {
+    "slug": "mikrotik",
+    "file": "mikrotik.svg"
+  },
+  "MongoDB": {
+    "slug": "mongodb",
+    "file": "mongodb.svg"
+  },
+  "Netapp": {
+    "slug": "netapp",
+    "file": "netapp.svg"
+  },
+  "Nokia": {
+    "slug": "nokia",
+    "file": "nokia.svg"
+  },
+  "Nutanix": {
+    "slug": "nutanix",
+    "file": "nutanix.svg"
+  },
+  "NVIDIA": {
+    "slug": "nvidia",
+    "file": "nvidia.svg"
+  },
+  "Okta": {
+    "slug": "okta",
+    "file": "okta.svg"
+  },
+  "Paloalto Networks": {
+    "slug": "paloaltonetworks",
+    "file": "paloalto-networks.svg"
+  },
+  "Qlik": {
+    "slug": "qlik",
+    "file": "qlik.svg"
+  },
+  "RedHat": {
+    "slug": "redhat",
+    "file": "redhat.svg"
+  },
+  "SAP": {
+    "slug": "sap",
+    "file": "sap.svg"
+  },
+  "Snowflake": {
+    "slug": "snowflake",
+    "file": "snowflake.svg"
+  },
+  "Splunk": {
+    "slug": "splunk",
+    "file": "splunk.svg"
+  },
+  "SUSE": {
+    "slug": "suse",
+    "file": "suse.svg"
+  },
+  "Symantec": {
+    "slug": "symantec",
+    "file": "symantec.svg"
+  },
+  "Talend": {
+    "slug": "talend",
+    "file": "talend.svg"
+  },
+  "Teradata": {
+    "slug": "teradata",
+    "file": "teradata.svg"
+  },
+  "Trend Micro": {
+    "slug": "trendmicro",
+    "file": "trend-micro.svg"
+  },
+  "UiPath": {
+    "slug": "uipath",
+    "file": "uipath.svg"
+  },
+  "Veeam": {
+    "slug": "veeam",
+    "file": "veeam.svg"
+  },
+  "VMware": {
+    "slug": "vmware",
+    "file": "vmware.svg"
+  }
+}

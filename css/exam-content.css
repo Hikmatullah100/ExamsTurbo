@@ -1,0 +1,155 @@
+/* Exam page ke extra hisse: FAQs, demo questions, scenarios, article */
+.exam-extra { margin-top: 2rem; }
+.exam-extra-block { margin-top: 2rem; }
+.exam-extra-block .modal-subheading { margin-bottom: 1rem; }
+
+/* Article ke andar user ka banaya hua HTML */
+.vendor-exam-article img { max-width: 100%; height: auto; border-radius: 10px; }
+.vendor-exam-article table { width: 100%; border-collapse: collapse; margin: 1rem 0; display: block; overflow-x: auto; }
+.vendor-exam-article th,
+.vendor-exam-article td { border: 1px solid rgba(255, 255, 255, 0.18); padding: 0.55rem 0.75rem; text-align: left; }
+.vendor-exam-article th { background: rgba(255, 255, 255, 0.06); }
+.vendor-exam-article blockquote { margin: 1rem 0; padding: 0.5rem 1rem; border-left: 3px solid var(--orange, #ff6a1a); background: rgba(255, 255, 255, 0.04); }
+
+/* FAQ */
+.exam-faq-answer { white-space: pre-line; }
+
+/* Demo questions */
+.exam-demo-list { display: grid; gap: 1rem; }
+.exam-demo-card { border: 1px solid rgba(255, 255, 255, 0.14); border-radius: 14px; padding: 1.1rem 1.2rem; background: rgba(255, 255, 255, 0.03); }
+.exam-demo-number { font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.7; margin-bottom: 0.35rem; }
+.exam-demo-question { font-weight: 600; margin-bottom: 0.8rem; white-space: pre-line; }
+.exam-demo-options { display: grid; gap: 0.5rem; }
+.exam-demo-option { display: flex; align-items: flex-start; gap: 0.65rem; padding: 0.6rem 0.8rem; border: 1px solid rgba(255, 255, 255, 0.16); border-radius: 10px; cursor: pointer; transition: border-color 0.15s, background 0.15s; }
+.exam-demo-option:hover { border-color: var(--orange, #ff6a1a); }
+.exam-demo-option input { margin-top: 0.3rem; accent-color: var(--orange, #ff6a1a); }
+.exam-demo-letter { font-weight: 700; min-width: 1.2rem; }
+.exam-demo-option.is-correct { border-color: #22c55e; background: rgba(34, 197, 94, 0.12); }
+.exam-demo-option.is-wrong { border-color: #ef4444; background: rgba(239, 68, 68, 0.12); }
+.exam-demo-actions { display: flex; gap: 0.5rem; margin-top: 0.8rem; }
+.exam-demo-result { display: none; margin-top: 0.8rem; padding: 0.7rem 0.9rem; border-radius: 10px; background: rgba(255, 255, 255, 0.06); white-space: pre-line; }
+.exam-demo-result.show { display: block; }
+
+/* Scenarios */
+.exam-scenario-note { opacity: 0.75; font-size: 0.9rem; }
+.exam-scenario-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+.exam-scenario-card { border: 1px solid rgba(255, 255, 255, 0.14); border-radius: 14px; padding: 1rem 1.1rem; background: rgba(255, 255, 255, 0.03); }
+.exam-scenario-card h4 { font-size: 1.05rem; margin: 0.6rem 0 0.4rem; }
+.exam-scenario-card p { margin: 0; opacity: 0.88; white-space: pre-line; }
+.exam-scenario-label { display: inline-block; font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.2rem 0.55rem; border-radius: 999px; border: 1px solid rgba(255, 255, 255, 0.25); opacity: 0.85; }
+
+/* Customer reviews */
+.exam-review-summary { display: flex; align-items: center; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 1rem; }
+.exam-review-avg { font-size: 2rem; line-height: 1; }
+.exam-review-stars { color: #fbbf24; letter-spacing: 0.08em; }
+.exam-review-count { opacity: 0.75; font-size: 0.9rem; }
+.exam-review-list { display: grid; gap: 0.9rem; margin-bottom: 1.5rem; }
+.exam-review-card { border: 1px solid rgba(255, 255, 255, 0.14); border-radius: 14px; padding: 1rem 1.1rem; background: rgba(255, 255, 255, 0.03); }
+.exam-review-head { display: flex; align-items: center; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 0.4rem; }
+.exam-review-head time { margin-left: auto; opacity: 0.65; font-size: 0.85rem; }
+.exam-review-card h4 { font-size: 1.05rem; margin: 0.2rem 0 0.4rem; }
+.exam-review-card p { margin: 0; white-space: pre-line; }
+.exam-review-empty { opacity: 0.8; }
+.exam-review-form { border: 1px solid rgba(255, 255, 255, 0.14); border-radius: 14px; padding: 1.1rem 1.2rem; background: rgba(255, 255, 255, 0.03); }
+.exam-review-form h4 { margin-bottom: 0.3rem; }
+.exam-review-note { opacity: 0.75; font-size: 0.9rem; }
+.exam-review-rating { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.exam-review-rate-option { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.35rem 0.8rem; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 999px; cursor: pointer; }
+.exam-review-rate-option input { accent-color: var(--orange, #ff6a1a); }
+.exam-review-rate-option:has(input:checked) { border-color: var(--orange, #ff6a1a); background: rgba(255, 106, 26, 0.15); }
+.exam-review-trap { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.exam-review-msg { margin-top: 0.7rem; min-height: 1.2em; }
+.exam-review-msg.ok { color: #4ade80; }
+.exam-review-msg.err { color: #fbbf24; }
+
+/* =========================================================
+   Article ke andar ki formatting (bold, link, headings, lists)
+   #vendorExamArticle se likha hai taake site ki baqi CSS (resets) ise na dabaye
+   ========================================================= */
+#vendorExamArticle strong,
+#vendorExamArticle b { font-weight: 700; }
+#vendorExamArticle em,
+#vendorExamArticle i { font-style: italic; }
+#vendorExamArticle u { text-decoration: underline; }
+#vendorExamArticle a {
+  color: var(--exam-link, #ff9a3c);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: inherit;
+}
+#vendorExamArticle a:hover,
+#vendorExamArticle a:focus { color: #ffc27a; }
+
+#vendorExamArticle h1,
+#vendorExamArticle h2,
+#vendorExamArticle h3,
+#vendorExamArticle h4,
+#vendorExamArticle h5,
+#vendorExamArticle h6 { font-weight: 700; line-height: 1.25; margin: 1.4rem 0 0.6rem; }
+#vendorExamArticle h1 { font-size: 2rem; font-weight: 800; }
+#vendorExamArticle h2 { font-size: 1.65rem; }
+#vendorExamArticle h3 { font-size: 1.4rem; }
+#vendorExamArticle h4 { font-size: 1.2rem; }
+#vendorExamArticle h5 { font-size: 1.05rem; }
+#vendorExamArticle h6 { font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.04em; }
+
+#vendorExamArticle p { margin: 0 0 1rem; }
+#vendorExamArticle ul,
+#vendorExamArticle ol { margin: 0 0 1rem; padding-left: 1.6rem; }
+#vendorExamArticle ul { list-style: disc; }
+#vendorExamArticle ol { list-style: decimal; }
+#vendorExamArticle li { margin-bottom: 0.35rem; }
+
+/* =========================================================
+   Article ka matn parhne layak ho (size, wazan, line ka faasla)
+   Do ID lagayi hain taake site ki baqi CSS ise dabaa na sake
+   ========================================================= */
+#vendorModal #vendorExamArticle {
+  font-size: 17px;
+  line-height: 1.8;
+}
+#vendorModal #vendorExamArticle p,
+#vendorModal #vendorExamArticle li,
+#vendorModal #vendorExamArticle td,
+#vendorModal #vendorExamArticle th,
+#vendorModal #vendorExamArticle blockquote {
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.8;
+  letter-spacing: normal;
+  color: #dbe6f2;
+}
+#vendorModal #vendorExamArticle th { font-weight: 700; }
+#vendorModal #vendorExamArticle strong,
+#vendorModal #vendorExamArticle b { font-weight: 700; color: #fff; }
+@media (max-width: 575px) {
+  #vendorModal #vendorExamArticle,
+  #vendorModal #vendorExamArticle p,
+  #vendorModal #vendorExamArticle li { font-size: 16px; }
+}
+
+/* Review form helper text + labels: readable on dark background */
+#vendorModal .exam-review-form .form-text,
+#vendorModal .exam-review-form .form-text.text-muted {
+  color: #b8c7d9 !important;
+  font-size: 14px;
+  line-height: 1.5;
+  margin-top: 6px;
+  opacity: 1;
+}
+#vendorModal .exam-review-form .form-label {
+  color: #f1f5f9;
+  font-size: 16px;
+  font-weight: 600;
+}
+#vendorModal .exam-review-form .form-control::placeholder {
+  color: #64748b;
+  opacity: 1;
+}
+
+/* Demo Questions jump button: target ko thori der highlight */
+#vendorModal .exam-jump-highlight { animation: exam-jump-pulse 1.6s ease-out; border-radius: 14px; }
+@keyframes exam-jump-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(255, 154, 46, 0.65); }
+  100% { box-shadow: 0 0 0 18px rgba(255, 154, 46, 0); }
+}

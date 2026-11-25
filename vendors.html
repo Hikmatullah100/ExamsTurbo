@@ -1,0 +1,851 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Explore IT certification vendors, exam resources, and digital learning libraries in one searchable directory."
+    />
+    <meta name="theme-color" content="#071A2F" />
+    <title>ExamsTurbo | Certified Vendor Directory</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/exam-content.css" />
+  </head>
+  <body>
+    <div class="promo-bar">
+      <div class="container promo-inner">
+        <span
+          ><i class="fa-solid fa-bolt"></i> SPECIAL OFFER: GET 25% OFF YOUR
+          FIRST ORDER</span
+        >
+        <span class="promo-code">USE CODE <strong>WELCOME25</strong></span>
+      </div>
+    </div>
+
+    <header class="site-header">
+      <nav class="navbar navbar-expand-xl container">
+        <a
+          class="navbar-brand brand"
+          href="index.html"
+          aria-label="ExamsTurbo home"
+        >
+          <span class="brand-mark"
+            ><img src="assets/images/exams-turbo-icon.png" alt="" aria-hidden="true"
+          ></span>
+          <span
+            ><span class="brand-exams">EXAMS</span
+            ><span class="brand-turbo">TURBO</span></span
+          >
+        </a>
+        <button
+          class="navbar-toggler nav-toggle"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#mainNav"
+          aria-controls="mainNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNav">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="vendors.html"
+                >Vendors</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="blog.html">Blog</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="community.html">Community</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact</a>
+            </li>
+          </ul>
+          <div class="nav-actions">
+            <button
+              class="cart-button"
+              id="openCart"
+              aria-label="Open shopping cart"
+            >
+              <i class="fa-solid fa-cart-shopping"></i
+              ><span class="cart-label">Cart</span>
+              <span class="cart-count" id="cartCount">0</span>
+            </button>
+            <a
+              class="btn btn-outline-light btn-sm portal-btn"
+              href="login/"
+              >Login Portal</a
+            >
+            <a class="btn btn-orange btn-sm" href="#vendors"
+              >Browse Vendors <i class="fa-solid fa-arrow-right ms-1"></i
+            ></a>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero-section" id="home">
+        <div class="hero-orb orb-one"></div>
+        <div class="hero-orb orb-two"></div>
+        <div class="container hero-content">
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span> YOUR CERTIFICATION JOURNEY STARTS
+            HERE
+          </div>
+          <h1><span>CERTIFIED VENDOR</span><br /><em>DIRECTORY</em></h1>
+          <p class="hero-copy">
+            Discover trusted IT certification providers and explore professional
+            certification resources through one powerful directory.
+          </p>
+          <div class="search-shell">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input
+              id="vendorSearch"
+              type="search"
+              autocomplete="off"
+              placeholder="Search vendors, exam codes, providers or categories..."
+              aria-label="Search vendors, certifications, and exams"
+              role="combobox"
+              aria-autocomplete="list"
+              aria-haspopup="listbox"
+              aria-controls="searchSuggestionOptions"
+              aria-expanded="false"
+            />
+            <button
+              id="clearSearch"
+              class="clear-search"
+              type="button"
+              aria-label="Clear search"
+            >
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+            <span class="search-shortcut">LIVE SEARCH</span>
+            <div class="search-suggestions" id="searchSuggestions" hidden>
+              <div
+                class="search-suggestion-options"
+                id="searchSuggestionOptions"
+                role="listbox"
+                aria-label="Search suggestions"
+              ></div>
+              <div
+                class="search-no-results"
+                id="searchNoResults"
+                role="status"
+                hidden
+              >
+                No matching results found
+              </div>
+            </div>
+          </div>
+          <div class="trust-row">
+            <div class="trust-pill">
+              <i class="fa-solid fa-link"></i><span>VENDOR PROGRAM LINKS</span>
+            </div>
+            <div class="trust-pill">
+              <i class="fa-solid fa-building"></i
+              ><span
+                ><strong id="heroVendorCount">0</strong> PROVIDERS LISTED</span
+              >
+            </div>
+            <div class="trust-pill">
+              <i class="fa-solid fa-bolt"></i><span>INSTANT ACCESS</span>
+            </div>
+          </div>
+          <div class="hero-footnote">
+            <span></span> Explore certification providers and exam libraries in
+            seconds
+          </div>
+        </div>
+      </section>
+
+      <section class="directory-section section-pad" id="vendors">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <div class="section-kicker">EXPLORE THE DIRECTORY</div>
+              <h2>FIND YOUR <span>VENDOR</span></h2>
+              <p>
+                Browse leading certification providers, or use search and
+                alphabetical filters to find exactly what you need.
+              </p>
+            </div>
+            <div class="directory-total">
+              <strong id="resultCount">0</strong
+              ><span>VENDORS<br />AVAILABLE</span>
+            </div>
+          </div>
+
+          <div class="alphabet-panel">
+            <div class="alphabet-top">
+              <span
+                ><i class="fa-solid fa-filter"></i> FILTER ALPHABETICALLY</span
+              ><span class="filter-hint"
+                >Choose a letter to narrow results</span
+              >
+            </div>
+            <div
+              class="alphabet-list"
+              id="alphabetFilters"
+              aria-label="Filter vendors alphabetically"
+            ></div>
+          </div>
+
+          <div class="certification-category-panel">
+            <div class="alphabet-top">
+              <span
+                ><i class="fa-solid fa-layer-group"></i> CERTIFICATION
+                CATEGORIES</span
+              ><span class="filter-hint"
+                >Choose a category to find matching vendors</span
+              >
+            </div>
+            <div
+              class="category-filter-list"
+              id="certificationCategoryFilters"
+              aria-label="Filter vendors by certification category"
+            ></div>
+          </div>
+
+          <div class="directory-toolbar">
+            <div>
+              <span class="live-dot"></span>
+              <span id="directoryStatus">Showing all vendors</span>
+            </div>
+            <select
+              id="sortVendors"
+              class="sort-select"
+              aria-label="Sort vendors"
+            >
+              <option value="az">Sort: A to Z</option>
+              <option value="za">Sort: Z to A</option>
+            </select>
+          </div>
+          <div class="vendor-grid" id="vendorGrid" aria-live="polite"></div>
+          <div class="empty-state d-none" id="emptyState">
+            <div class="empty-icon">
+              <i class="fa-solid fa-folder-open"></i>
+            </div>
+            <h3>No vendors found</h3>
+            <p>
+              Try another search term or reset the vendor and category filters.
+            </p>
+            <button class="btn btn-orange" id="resetFilters">
+              Reset Filters
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="about-strip section-pad" id="about">
+        <div class="container about-inner">
+          <div class="about-icon">
+            <i class="fa-solid fa-graduation-cap"></i>
+          </div>
+          <div>
+            <div class="section-kicker">ONE DIRECTORY. MORE POSSIBILITIES.</div>
+            <h2>MAKE YOUR NEXT CERTIFICATION <span>COUNT.</span></h2>
+            <p>
+              Find the provider, explore its learning library, and keep your
+              certification resources organized in one place.
+            </p>
+          </div>
+          <a href="#vendors" class="btn btn-orange"
+            >Explore Vendors <i class="fa-solid fa-arrow-right ms-2"></i
+          ></a>
+        </div>
+      </section>
+
+      <section class="info-section section-pad" id="faqs">
+        <div class="container info-grid">
+          <div>
+            <div class="section-kicker">HOW IT WORKS</div>
+            <h2>YOUR NEXT STEP IS <span>SIMPLER.</span></h2>
+            <p class="muted-copy">
+              Search the directory by vendor or exam code, open a vendor
+              library, and follow provider links for credential details. Clearly
+              labeled demo cart products are separate from certification
+              listings.
+            </p>
+          </div>
+          <div class="info-points">
+            <div class="info-point">
+              <span>01</span>
+              <div>
+                <h3>Find a provider</h3>
+                <p>
+                  Search by vendor name, category, or an available official exam
+                  code.
+                </p>
+              </div>
+            </div>
+            <div class="info-point">
+              <span>02</span>
+              <div>
+                <h3>Explore the library</h3>
+                <p>
+                  Review listed credentials and follow the vendor's program
+                  links.
+                </p>
+              </div>
+            </div>
+            <div class="info-point">
+              <span>03</span>
+              <div>
+                <h3>Build your cart</h3>
+                <p>Add items and review your order in the cart drawer.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="faq-section section-pad" id="blog">
+        <div class="container">
+          <div class="section-kicker">HELP & INFORMATION</div>
+          <h2>FREQUENTLY ASKED <span>QUESTIONS</span></h2>
+          <div class="accordion custom-accordion" id="faqAccordion">
+            <div class="accordion-item">
+              <h3 class="accordion-header">
+                <button
+                  class="accordion-button"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#faqOne"
+                >
+                  Can I add more vendors to the directory?
+                </button>
+              </h3>
+              <div
+                id="faqOne"
+                class="accordion-collapse collapse show"
+                data-bs-parent="#faqAccordion"
+              >
+                <div class="accordion-body">
+                  Yes. Add vendor objects to <code>js/vendors.js</code>. The
+                  directory automatically sorts and renders the records.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h3 class="accordion-header">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#faqTwo"
+                >
+                  Does this demo process real payments?
+                </button>
+              </h3>
+              <div
+                id="faqTwo"
+                class="accordion-collapse collapse"
+                data-bs-parent="#faqAccordion"
+              >
+                <div class="accordion-body">
+                  No. Checkout is a frontend demonstration only. Connect a
+                  secure server-side payment provider before accepting real
+                  payments.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h3 class="accordion-header">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#faqThree"
+                >
+                  Does the cart remember my items?
+                </button>
+              </h3>
+              <div
+                id="faqThree"
+                class="accordion-collapse collapse"
+                data-bs-parent="#faqAccordion"
+              >
+                <div class="accordion-body">
+                  Yes. The sample cart stores its contents in your browser using
+                  LocalStorage.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer" id="contact">
+      <div class="container footer-main">
+        <div class="footer-brand-col">
+          <a class="brand footer-brand" href="index.html"
+            ><span class="brand-mark"
+              ><img src="assets/images/exams-turbo-icon.png" alt="" aria-hidden="true"></span
+            ><span
+              ><span class="brand-exams">EXAMS</span
+              ><span class="brand-turbo">TURBO</span></span
+            ></a
+          >
+          <p>
+            Your central destination for discovering IT certification providers
+            and exploring digital learning resources.
+          </p>
+          <div class="social-links">
+            <a href="#" aria-label="Facebook"
+              ><i class="fa-brands fa-facebook-f"></i></a
+            ><a href="#" aria-label="LinkedIn"
+              ><i class="fa-brands fa-linkedin-in"></i></a
+            ><a href="#" aria-label="Instagram"
+              ><i class="fa-brands fa-instagram"></i></a
+            ><a href="#" aria-label="X"
+              ><i class="fa-brands fa-x-twitter"></i
+            ></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>QUICK LINKS</h3>
+          <a href="index.html">Home</a><a href="vendors.html">Vendors</a
+          ><a href="blog.html">Blog</a><a href="community.html">Community</a
+          ><a href="about.html">About Us</a><a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h3>COMPANY & LEGAL</h3>
+          <a href="#">Privacy Policy</a><a href="#">Terms & Conditions</a
+          ><a href="#">Refund Policy</a><a href="#">Disclaimer</a>
+        </div>
+        <div class="footer-col">
+          <h3>OFFICE & SUPPORT</h3>
+          <p>
+            <i class="fa-solid fa-location-dot"></i> Your office address here
+          </p>
+          <p><i class="fa-solid fa-envelope"></i> support@example.com</p>
+          <p><i class="fa-solid fa-phone"></i> +00 000 0000000</p>
+        </div>
+        <div class="footer-newsletter">
+          <h3>STAY IN THE LOOP</h3>
+          <p>Get updates about new providers and learning resources.</p>
+          <form id="newsletterForm">
+            <label class="visually-hidden" for="newsletterEmail"
+              >Email address</label
+            >
+            <div class="newsletter-input">
+              <input
+                id="newsletterEmail"
+                type="email"
+                placeholder="Your email address"
+                required
+              /><button type="submit" aria-label="Subscribe">
+                <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </div>
+            <small id="newsletterMessage">No spam. Unsubscribe anytime.</small>
+          </form>
+          <div class="secure-note">
+            <i class="fa-solid fa-lock"></i> SECURE CHECKOUT READY
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="container footer-bottom-inner">
+          <span
+            >© <span id="currentYear"></span> ExamsTurbo. All rights
+            reserved.</span
+          ><span class="payment-methods"
+            ><i class="fa-brands fa-cc-visa"></i
+            ><i class="fa-brands fa-cc-mastercard"></i
+            ><i class="fa-brands fa-cc-paypal"></i
+            ><i class="fa-solid fa-lock"></i> Secure demo</span
+          >
+        </div>
+      </div>
+    </footer>
+
+    <!-- Vendor library modal -->
+    <div
+      class="modal fade"
+      id="vendorModal"
+      tabindex="-1"
+      aria-labelledby="vendorModalTitle"
+      aria-hidden="true"
+    >
+      <div
+        class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg"
+      >
+        <div class="modal-content custom-modal">
+          <div class="modal-header">
+            <div class="vendor-modal-brand">
+              <div
+                class="vendor-logo modal-vendor-logo"
+                id="vendorModalLogo"
+              ></div>
+              <div>
+                <div class="section-kicker">VENDOR LIBRARY</div>
+                <h2 class="modal-title" id="vendorModalTitle">Vendor</h2>
+              </div>
+            </div>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p class="modal-description" id="vendorModalDescription"></p>
+            <div
+              class="vendor-modal-categories"
+              id="vendorModalCategories"
+            ></div>
+            <div id="vendorLibrarySearchControls">
+              <label class="visually-hidden" for="vendorLibrarySearch"
+                >Search this vendor's certifications and exams</label
+              >
+              <div class="vendor-exam-search">
+                <i class="fa-solid fa-magnifying-glass"></i
+                ><input
+                  id="vendorLibrarySearch"
+                  type="search"
+                  placeholder="Search certifications, codes, exams, or descriptions..."
+                  autocomplete="off"
+                />
+              </div>
+              <p
+                class="certification-empty"
+                id="vendorSearchEmpty"
+                role="status"
+                hidden
+              >
+                No results found.
+              </p>
+            </div>
+            <section
+              id="vendorExamLibraryView"
+              aria-labelledby="vendorExamLibraryHeading"
+            >
+              <h3 class="modal-subheading" id="vendorExamLibraryHeading">
+                VENDOR EXAM LIBRARY
+              </h3>
+              <ul
+                class="vendor-exam-card-grid"
+                id="vendorExamLibrary"
+                aria-live="polite"
+              ></ul>
+            </section>
+            <section
+              class="vendor-exam-detail"
+              id="vendorExamDetail"
+              aria-labelledby="vendorExamDetailTitle"
+              hidden
+            >
+              <button
+                class="back-to-exam-library"
+                id="backToExamLibrary"
+                type="button"
+                aria-label="Back to exams"
+                title="Back to exams"
+              >
+                <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+              </button>
+              <div class="vendor-exam-detail-grid">
+                <div class="vendor-exam-cover-panel">
+                  <img
+                    id="vendorExamCover"
+                    class="vendor-exam-cover"
+                    src=""
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <button
+                    class="btn btn-outline-light btn-sm w-100"
+                    id="previewExamCover"
+                    type="button"
+                  >
+                    Look Inside (Preview)
+                  </button>
+                </div>
+                <div class="vendor-exam-information">
+                  <div class="section-kicker" id="vendorExamVendor"></div>
+                  <h3 id="vendorExamDetailTitle"></h3>
+                  <div class="vendor-exam-metrics" id="vendorExamMetrics"></div>
+                  <p
+                    class="vendor-exam-description"
+                    id="vendorExamDescription"
+                  ></p>
+                  <h4>Study Guide Information</h4>
+                  <p>
+                    This independent digital study resource is designed for exam
+                    preparation and readiness review. It does not provide access
+                    to the official examination.
+                  </p>
+                  <h4>Preparation Benefits</h4>
+                  <ul class="vendor-exam-benefits" id="vendorExamBenefits"></ul>
+                </div>
+                <aside class="vendor-exam-purchase">
+                  <div class="section-kicker">DIGITAL STUDY RESOURCE</div>
+                  <h3>Get Exam Study Guide</h3>
+                  <div class="vendor-exam-price" id="vendorExamPrice"></div>
+                  <p class="vendor-exam-access">
+                    <i class="fa-solid fa-bolt"></i
+                    ><span id="vendorExamAccess"></span>
+                  </p>
+                  <button
+                    class="btn btn-orange w-100"
+                    id="buyExamNow"
+                    type="button"
+                  ></button>
+                  <button
+                    class="btn btn-outline-light w-100"
+                    id="addExamToCart"
+                    type="button"
+                  >
+                    <i class="fa-solid fa-cart-plus me-2"></i>Add to Cart
+                  </button>
+                  <p class="vendor-exam-disclaimer">
+                    Independent educational resource. Checkout is not connected;
+                    no payment or order will be created.
+                  </p>
+                  <div
+                    class="vendor-exam-action-status"
+                    id="vendorExamActionStatus"
+                    role="status"
+                    aria-live="polite"
+                  ></div>
+                </aside>
+              </div>
+              <article
+                class="vendor-exam-article"
+                id="vendorExamArticle"
+                data-vendor-id="aace-international"
+                hidden
+              >
+                <!-- CUSTOM ARTICLE START -->
+                <h2>
+                  Complete Guide to
+                  <span class="outline-text">AACE-INTERNATIONAL</span>
+                  Certification Exams
+                </h2>
+                <p>
+                  ExamsTurbo offers independent preparation resources for
+                  AACE-INTERNATIONAL certifications, which are widely recognized
+                  in IT and technology fields. The materials help learners
+                  review core domains, strengthen their understanding, and
+                  assess readiness before taking an official examination.
+                </p>
+                <h3>
+                  Benefits of
+                  <span class="outline-text">AACE-INTERNATIONAL</span>
+                  Certification
+                </h3>
+                <ul>
+                  <li>
+                    Structured preparation around AACE-INTERNATIONAL
+                    certification objectives.
+                  </li>
+                  <li>
+                    Original practice questions and explanations for study
+                    review.
+                  </li>
+                  <li>
+                    Objective-based learning for better concept retention.
+                  </li>
+                  <li>
+                    Convenient digital study resources for flexible preparation.
+                  </li>
+                  <li>
+                    Independent educational support without official exam
+                    affiliation.
+                  </li>
+                  <li>
+                    Clear, revision-focused materials for certification
+                    readiness.
+                  </li>
+                </ul>
+                <h3>
+                  How to Prepare for
+                  <span class="outline-text">AACE-INTERNATIONAL</span> Exams
+                </h3>
+                <p>
+                  Preparing for AACE-INTERNATIONAL certification requires a
+                  strong study plan and reliable preparation materials. Our
+                  resources are designed for learning, practice, and exam
+                  readiness by covering the core objectives, reinforcing key
+                  concepts, and helping learners assess readiness before taking
+                  the official examination.
+                </p>
+                <h3>
+                  Why Choose Our
+                  <span class="outline-text">AACE-INTERNATIONAL</span>
+                  Preparation Resources?
+                </h3>
+                <ul>
+                  <li>
+                    Original practice questions designed for exam preparation.
+                  </li>
+                  <li>
+                    Detailed explanations to support structured review and
+                    understanding.
+                  </li>
+                  <li>
+                    Study materials aligned with current certification
+                    objectives.
+                  </li>
+                  <li>Digital access for flexible learning across devices.</li>
+                  <li>
+                    Educational content created for revision and readiness
+                    assessment.
+                  </li>
+                  <li>
+                    Independent resources intended for preparation rather than
+                    official exam access.
+                  </li>
+                </ul>
+                <p>
+                  Purchase our AACE-INTERNATIONAL preparation resources for
+                  digital study support and objective-based practice. These
+                  materials are intended to help learners assess readiness
+                  before taking an official examination and do not provide
+                  access to a provider's official exam.
+                </p>
+                <!-- ADD CUSTOM H2/H3 HEADINGS, PARAGRAPHS, LISTS, TABLES, FAQs, AND LINKS HERE -->
+                <!-- CUSTOM ARTICLE END -->
+              </article>
+            </section>
+            <div id="demoCartSection">
+              <h3 class="modal-subheading">DEMO CART PRODUCTS</h3>
+              <div class="exam-list" id="examList"></div>
+              <div class="delivery-note">
+                <i class="fa-solid fa-envelope-open-text"></i
+                ><span
+                  >Products and prices are sample catalog content, not official
+                  vendor offerings or exam pricing.</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-outline-light" data-bs-dismiss="modal">
+              Back to Vendors
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <dialog
+      class="exam-cover-preview"
+      id="examCoverPreview"
+      aria-label="Exam cover preview"
+    >
+      <button
+        class="exam-cover-preview-close"
+        id="closeExamCoverPreview"
+        type="button"
+        aria-label="Close preview"
+      >
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <img id="examCoverPreviewImage" src="" alt="" />
+    </dialog>
+
+    <!-- Cart drawer -->
+    <div class="drawer-backdrop" id="drawerBackdrop"></div>
+    <aside
+      class="cart-drawer"
+      id="cartDrawer"
+      aria-label="Shopping cart"
+      aria-hidden="true"
+    >
+      <div class="drawer-header">
+        <div>
+          <div class="section-kicker">YOUR SELECTION</div>
+          <h2>Shopping Cart <span id="drawerCount">(0)</span></h2>
+        </div>
+        <button id="closeCart" class="drawer-close" aria-label="Close cart">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="drawer-items" id="cartItems"></div>
+      <div class="drawer-empty" id="cartEmpty">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <h3>Your cart is empty</h3>
+        <p>Explore a vendor library and add a product to get started.</p>
+        <button class="btn btn-orange" id="browseVendors">
+          Browse Vendors
+        </button>
+      </div>
+      <div class="drawer-checkout" id="checkoutPanel">
+        <div class="subtotal-row">
+          <span>Subtotal</span><strong id="cartSubtotal">$0.00</strong>
+        </div>
+        <form id="checkoutForm">
+          <label for="checkoutEmail">Email for delivery</label
+          ><input
+            id="checkoutEmail"
+            type="email"
+            placeholder="you@example.com"
+            required
+          /><button type="submit" class="btn btn-orange w-100">
+            Continue to Demo Checkout
+            <i class="fa-solid fa-arrow-right ms-2"></i></button
+          ><small>Demo only — no payment will be processed.</small>
+        </form>
+        <div id="checkoutMessage" class="checkout-message" role="status"></div>
+      </div>
+    </aside>
+
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+      <div
+        id="siteToast"
+        class="toast custom-toast"
+        role="status"
+        aria-live="polite"
+      >
+        <div class="toast-body">
+          <i class="fa-solid fa-circle-check"></i
+          ><span id="toastMessage">Added to cart</span>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>window.dataReady = new Promise((resolve) => { window.__resolveData = resolve; setTimeout(resolve, 4000); });</script>
+    <script src="js/vendors.js"></script>
+    <script src="js/exams.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/exam-public.js"></script>
+    <script src="js/site.js"></script>
+    <script type="module" src="js/supabase.js"></script>
+    <script type="module" src="js/data-loader.js"></script>
+    <script type="module" src="js/forms-api.js"></script>
+    <script type="module" src="js/promo.js"></script>
+  </body>
+</html>

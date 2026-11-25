@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en" data-bs-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Admin Dashboard | ExamsTurbo</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body { background: #071a2f; min-height: 100vh; }
+      .adm-side { background: #0d2742; border-right: 1px solid rgba(255,255,255,.08); min-height: 100vh; }
+      .adm-brand { font-weight: 800; letter-spacing: .5px; }
+      .adm-brand span { color: #ff7a00; }
+      .adm-nav button {
+        width: 100%; text-align: left; border: 0; background: transparent; color: #b8c7d8;
+        padding: 10px 14px; border-radius: 8px; font-weight: 600; font-size: 14px;
+      }
+      .adm-nav button:hover { background: rgba(255,255,255,.06); color: #fff; }
+      .adm-nav button.active { background: rgba(255,122,0,.18); color: #fff; }
+      .adm-card { background: #0d2742; border: 1px solid rgba(255,255,255,.08); border-radius: 12px; }
+      .table { --bs-table-bg: transparent; }
+      .adm-trunc { max-width: 280px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+      .btn-orange { background: #ff7a00; border-color: #ff7a00; color: #fff; font-weight: 700; }
+      .btn-orange:hover { background: #e66d00; border-color: #e66d00; color: #fff; }
+      .ec-editor {
+        min-height: 340px; background: rgba(0,0,0,.25); border: 1px solid rgba(255,255,255,.14);
+        border-radius: 8px; padding: 14px; outline: none; overflow: auto;
+      }
+      .ec-editor:focus { border-color: #ff7a00; }
+      .ec-editor.is-disabled { opacity: .55; }
+      .ec-editor:empty::before { content: attr(data-placeholder); color: #6c7a89; }
+      .ec-editor table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+      .ec-editor th, .ec-editor td { border: 1px solid rgba(255,255,255,.25); padding: 6px 8px; }
+      .ec-editor img { max-width: 100%; height: auto; }
+      .ec-editor h1 { font-size: 2rem; font-weight: 800; margin: 14px 0 8px; }
+      .ec-editor h2 { font-size: 1.6rem; font-weight: 700; margin: 14px 0 8px; }
+      .ec-editor h3 { font-size: 1.35rem; font-weight: 700; margin: 12px 0 6px; }
+      .ec-editor h4 { font-size: 1.15rem; font-weight: 700; margin: 12px 0 6px; }
+      .ec-editor h5 { font-size: 1rem; font-weight: 700; margin: 10px 0 6px; }
+      .ec-editor h6 { font-size: .9rem; font-weight: 700; margin: 10px 0 6px; text-transform: uppercase; letter-spacing: .04em; }
+      .ec-editor a { color: #6cb2ff; text-decoration: underline; }
+      .ec-editor blockquote { border-left: 3px solid #ff7a00; padding-left: 12px; color: #b8c7d8; }
+      .ec-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-bottom: 8px; }
+      .ec-item { border: 1px solid rgba(255,255,255,.1); border-radius: 10px; padding: 12px; margin-bottom: 12px; }
+      .ec-empty { border: 1px dashed rgba(255,255,255,.2); border-radius: 10px; padding: 18px; text-align: center; color: #8da0b5; font-size: 14px; }
+      .ec-counter { font-size: 12px; color: #8da0b5; text-align: right; }
+      @media (max-width: 767px) { .adm-side { min-height: auto; } }
+    </style>
+  </head>
+  <body>
+    <!-- LOGIN -->
+    <div id="viewLogin" class="container py-5" hidden>
+      <div class="adm-card p-4 mx-auto" style="max-width: 420px">
+        <h1 class="h4 adm-brand mb-1">EXAMS<span>TURBO</span> Admin</h1>
+        <p class="text-secondary small mb-4">Admin accounts only.</p>
+        <form id="loginForm">
+          <label class="form-label" for="loginEmail">Email</label>
+          <input class="form-control mb-3" id="loginEmail" type="email" required autocomplete="email" />
+          <label class="form-label" for="loginPassword">Password</label>
+          <input class="form-control mb-3" id="loginPassword" type="password" required autocomplete="current-password" />
+          <button class="btn btn-orange w-100" type="submit">Login</button>
+          <p class="small text-warning mt-3 mb-0" id="loginFeedback" role="status"></p>
+        </form>
+      </div>
+    </div>
+
+    <!-- NOT AN ADMIN -->
+    <div id="viewDenied" class="container py-5" hidden>
+      <div class="adm-card p-4 mx-auto text-center" style="max-width: 460px">
+        <h1 class="h5">Access denied</h1>
+        <p class="text-secondary">
+          This account does not have admin access. Add your email to the
+          <code>admins</code> table, then log in again.
+        </p>
+        <button class="btn btn-outline-light" data-logout>Logout</button>
+      </div>
+    </div>
+
+    <!-- DASHBOARD -->
+    <div id="viewApp" class="container-fluid" hidden>
+      <div class="row">
+        <aside class="col-md-3 col-lg-2 adm-side p-3">
+          <div class="adm-brand h5 mb-1">EXAMS<span>TURBO</span></div>
+          <div class="text-secondary small mb-3">Admin Dashboard</div>
+          <nav class="adm-nav d-grid gap-1" id="adminNav" aria-label="Sections"></nav>
+          <hr class="border-secondary" />
+          <a class="btn btn-sm btn-outline-light w-100 mb-2" href="index.html" target="_blank" rel="noopener">View website</a>
+          <button class="btn btn-sm btn-outline-secondary w-100" data-logout>Logout</button>
+        </aside>
+        <main id="viewSection" class="col-md-9 col-lg-10 p-3 p-lg-4">
+          <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+            <div>
+              <h2 class="h4 mb-0" id="sectionTitle"></h2>
+              <div class="text-secondary small" id="sectionHint"></div>
+            </div>
+            <button class="btn btn-orange" id="addNew" type="button">
+              <i class="fa-solid fa-plus me-1"></i> Add new
+            </button>
+          </div>
+          <p class="small text-warning" id="pageNotice" role="status"></p>
+          <div class="adm-card p-2 p-lg-3">
+            <div class="table-responsive">
+              <table class="table align-middle mb-0">
+                <thead id="tableHead"></thead>
+                <tbody id="tableBody"></tbody>
+              </table>
+            </div>
+            <p class="text-secondary text-center my-4" id="tableEmpty" hidden>Nothing here yet.</p>
+          </div>
+        </main>
+
+        <!-- EXAM CONTENT EDITOR -->
+        <main id="viewExamContent" class="col-md-9 col-lg-10 p-3 p-lg-4" hidden>
+          <div class="mx-auto" style="max-width: 860px">
+            <div class="text-secondary small mb-1"><i class="fa-regular fa-file-lines me-1"></i> CONTENT MANAGEMENT</div>
+            <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-1">
+              <h2 class="h3 mb-0">Exam Content Editor</h2>
+              <span id="ecStatus" class="badge text-bg-secondary" hidden></span>
+            </div>
+            <p class="text-secondary mb-3">Manage SEO metadata, exam articles and FAQs.</p>
+
+            <!-- 1. Select exam -->
+            <section class="adm-card p-3 mb-3" aria-labelledby="ecH1">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <h3 class="h6 mb-0" id="ecH1">1. Select Exam</h3>
+                <button type="button" class="btn btn-sm btn-outline-secondary" id="ecRefresh">
+                  <i class="fa-solid fa-rotate me-1"></i> Refresh exams
+                </button>
+              </div>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label" for="ecVendor">Vendor</label>
+                  <select class="form-select" id="ecVendor"><option value="">Loading vendors...</option></select>
+                  <div class="form-text" id="ecVendorCount">0 vendors available</div>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label" for="ecExam">Exam</label>
+                  <select class="form-select" id="ecExam" disabled><option value="">Select vendor first</option></select>
+                  <div class="form-text" id="ecExamCount">Available exams: 0</div>
+                </div>
+              </div>
+            </section>
+
+            <!-- 2. SEO -->
+            <section class="adm-card p-3 mb-3" aria-labelledby="ecH2">
+              <h3 class="h6 mb-3" id="ecH2">2. SEO Metadata</h3>
+              <label class="form-label" for="ecMetaTitle">Meta Title</label>
+              <input class="form-control" id="ecMetaTitle" maxlength="70" placeholder="Enter SEO title" disabled>
+              <div class="ec-counter mb-3" id="ecTitleCount">0/70</div>
+              <label class="form-label" for="ecMetaDesc">Meta Description</label>
+              <textarea class="form-control" id="ecMetaDesc" rows="3" maxlength="160" placeholder="Write the search engine description..." disabled></textarea>
+              <div class="ec-counter mb-3" id="ecDescCount">0/160</div>
+              <label class="form-label" for="ecMetaKeywords">Meta Keywords</label>
+              <textarea class="form-control" id="ecMetaKeywords" rows="2" maxlength="300" placeholder="e.g. AWS certification, AWS exam questions, AWS practice test" disabled></textarea>
+              <div class="d-flex justify-content-between">
+                <div class="form-text">Separate keywords with commas.</div>
+                <div class="ec-counter" id="ecKeywordsCount">0/300</div>
+              </div>
+            </section>
+
+            <!-- 3. FAQs -->
+            <section class="adm-card p-3 mb-3" aria-labelledby="ecH3">
+              <div class="d-flex justify-content-between align-items-start gap-2 mb-3">
+                <div>
+                  <h3 class="h6 mb-1" id="ecH3">3. Frequently Asked Questions <span class="text-secondary" id="ecFaqCount">0/12</span></h3>
+                  <div class="text-secondary small">Add FAQs that will appear in the public exam page FAQ section.</div>
+                </div>
+                <button type="button" class="btn btn-sm btn-orange" id="ecAddFaq" data-add="faqs" disabled>
+                  <i class="fa-solid fa-plus me-1"></i> Add FAQ
+                </button>
+              </div>
+              <div id="ecFaqList"></div>
+              <div class="form-text">Maximum 12 FAQs. Both question and answer are required. FAQs are saved with the article when you save a draft or publish.</div>
+            </section>
+
+            <!-- 4. Demo questions -->
+            <section class="adm-card p-3 mb-3" aria-labelledby="ecH4">
+              <div class="d-flex justify-content-between align-items-start gap-2 mb-3">
+                <div>
+                  <h3 class="h6 mb-1" id="ecH4">4. Sample Demo Questions <span class="text-secondary" id="ecDemoCount">0/10</span></h3>
+                  <div class="text-secondary small">Add up to 10 labeled sample educational practice questions.</div>
+                </div>
+                <button type="button" class="btn btn-sm btn-orange" id="ecAddDemo" data-add="demos" disabled>
+                  <i class="fa-solid fa-plus me-1"></i> Add question
+                </button>
+              </div>
+              <div id="ecDemoList"></div>
+            </section>
+
+            <!-- 5. Scenarios -->
+            <section class="adm-card p-3 mb-3" aria-labelledby="ecH5">
+              <div class="d-flex justify-content-between align-items-start gap-2 mb-3">
+                <div>
+                  <h3 class="h6 mb-1" id="ecH5">5. Illustrative Preparation Scenarios <span class="text-secondary" id="ecScenarioCount">0/6</span></h3>
+                  <div class="text-secondary small">Optional cards. These will be explicitly labeled as not customer reviews.</div>
+                </div>
+                <button type="button" class="btn btn-sm btn-outline-light" id="ecAddScenario" data-add="scenarios" disabled>
+                  <i class="fa-solid fa-plus me-1"></i> Add scenario
+                </button>
+              </div>
+              <div id="ecScenarioList"></div>
+            </section>
+
+            <!-- 6. Article -->
+            <section class="adm-card p-3 mb-3" aria-labelledby="ecH6">
+              <h3 class="h6 mb-1" id="ecH6">6. Article Content</h3>
+              <div class="text-secondary small mb-3">Format your article using headings, lists, links, images and tables.</div>
+              <div class="ec-toolbar" id="ecToolbar" role="toolbar" aria-label="Article formatting">
+                <button type="button" class="btn btn-sm btn-outline-secondary" data-cmd="bold" title="Bold" aria-label="Bold" disabled><i class="fa-solid fa-bold"></i></button>
+                <button type="button" class="btn btn-sm btn-outline-secondary" data-cmd="italic" title="Italic" aria-label="Italic" disabled><i class="fa-solid fa-italic"></i></button>
+                <button type="button" class="btn btn-sm btn-outline-secondary" data-cmd="underline" title="Underline" aria-label="Underline" disabled><i class="fa-solid fa-underline"></i></button>
+                <select class="form-select form-select-sm w-auto" id="ecBlock" aria-label="Text style" disabled>
+                  <option value="p">Paragraph</option>
+                  <option value="h1">Heading 1</option>
+                  <option value="h2">Heading 2</option>
+                  <option value="h3">Heading 3</option>
+                  <option value="h4">Heading 4</option>
+                  <option value="h5">Heading 5</option>
+                  <option value="h6">Heading 6</option>
+                  <option value="blockquote">Quote</option>
+                </select>
+                <button type="button" class="btn btn-sm btn-outline-secondary" data-cmd="insertUnorderedList" title="Bulleted list" aria-label="Bulleted list" disabled><i class="fa-solid fa-list-ul"></i></button>
+                <button type="button" class="btn btn-sm btn-outline-secondary" data-cmd="insertOrderedList" title="Numbered list" aria-label="Numbered list" disabled><i class="fa-solid fa-list-ol"></i></button>
+                <button type="button" class="btn btn-sm btn-outline-secondary" data-cmd="link" title="Insert link" aria-label="Insert link" disabled><i class="fa-solid fa-link"></i></button>
+                <button type="button" class="btn btn-sm btn-outline-secondary" data-cmd="unlink" title="Remove link" aria-label="Remove link" disabled><i class="fa-solid fa-link-slash"></i></button>
+                <button type="button" class="btn btn-sm btn-outline-secondary" data-cmd="image" title="Insert image" aria-label="Insert image" disabled><i class="fa-solid fa-image"></i></button>
+                <button type="button" class="btn btn-sm btn-outline-secondary" data-cmd="table" title="Insert table" aria-label="Insert table" disabled><i class="fa-solid fa-table"></i></button>
+                <button type="button" class="btn btn-sm btn-outline-secondary" data-cmd="hr" title="Horizontal line" aria-label="Horizontal line" disabled><i class="fa-solid fa-minus"></i></button>
+                <button type="button" class="btn btn-sm btn-outline-secondary" data-cmd="undo" title="Undo" aria-label="Undo" disabled><i class="fa-solid fa-rotate-left"></i></button>
+                <button type="button" class="btn btn-sm btn-outline-secondary" data-cmd="redo" title="Redo" aria-label="Redo" disabled><i class="fa-solid fa-rotate-right"></i></button>
+                <input type="file" id="ecImageInput" accept="image/jpeg,image/png,image/webp" hidden>
+              </div>
+              <div id="ecEditor" class="ec-editor is-disabled" contenteditable="false" role="textbox" aria-multiline="true" aria-label="Article content" data-placeholder="Start writing your exam article here..."></div>
+              <div class="ec-counter mt-1" id="ecWordCount">0 words</div>
+            </section>
+
+            <!-- Save -->
+            <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 pb-4">
+              <span id="ecFeedback" class="small text-warning" role="status"></span>
+              <div class="d-flex gap-2">
+                <button type="button" class="btn btn-outline-light" id="ecSaveDraft" disabled>Save draft</button>
+                <button type="button" class="btn btn-orange" id="ecPublish" disabled>Publish</button>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <!-- CUSTOMER REVIEWS MODERATION (js/exam-reviews.js builds its own content) -->
+        <main id="viewExamReviews" class="col-md-9 col-lg-10 p-3 p-lg-4" hidden></main>
+        <main id="viewContactMessages" class="col-md-9 col-lg-10 p-3 p-lg-4" hidden></main>
+        <main id="viewDashboard" class="col-md-9 col-lg-10 p-3 p-lg-4" hidden></main>
+        <main id="viewOrders" class="col-md-9 col-lg-10 p-3 p-lg-4" hidden></main>
+      </div>
+    </div>
+
+    <!-- ADD / EDIT FORM -->
+    <div class="modal fade" id="formModal" tabindex="-1" aria-labelledby="formTitle" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <form class="modal-content" id="recordForm">
+          <div class="modal-header">
+            <h2 class="modal-title h5" id="formTitle"></h2>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" id="formBody"></div>
+          <div class="modal-footer justify-content-between">
+            <span class="small text-warning" id="formFeedback" role="status"></span>
+            <div>
+              <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+              <button type="submit" class="btn btn-orange" id="saveBtn">Save</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="js/admin.js"></script>
+  </body>
+</html>

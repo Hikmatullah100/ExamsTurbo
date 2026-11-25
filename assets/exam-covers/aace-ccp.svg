@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="960" viewBox="0 0 720 960" role="img" aria-labelledby="title desc">
+  <title id="title">ExamsTurbo AACE-CCP exam preparation study guide</title>
+  <desc id="desc">Black and orange cover for the Certified Cost Professional exam resource.</desc>
+  <rect width="720" height="960" fill="#080808"/>
+  <path d="M0 0h720v310L0 540z" fill="#151515"/>
+  <path d="M0 0v960h18V0z" fill="#f47735"/>
+  <path d="M590 -28 780 165 590 358 400 165z" fill="none" stroke="#f47735" stroke-opacity=".2" stroke-width="2"/>
+  <path d="M590 25 728 165 590 305 452 165z" fill="none" stroke="#f47735" stroke-opacity=".14" stroke-width="2"/>
+  <path d="M74 310h130" stroke="#f47735" stroke-width="5"/>
+  <text x="74" y="115" fill="#f47735" font-family="Arial,sans-serif" font-size="32" font-weight="700" letter-spacing="2">EXAMS</text>
+  <text x="204" y="115" fill="#fff" font-family="Arial,sans-serif" font-size="32" font-weight="700" letter-spacing="2">TURBO</text>
+  <text x="74" y="270" fill="#f47735" font-family="Arial,sans-serif" font-size="94" font-weight="800" letter-spacing="4">AACE-CCP</text>
+  <text x="74" y="390" fill="#fff" font-family="Arial,sans-serif" font-size="42" font-weight="700">Certified Cost</text>
+  <text x="74" y="446" fill="#fff" font-family="Arial,sans-serif" font-size="42" font-weight="700">Professional</text>
+  <text x="74" y="520" fill="#aaa" font-family="Arial,sans-serif" font-size="22" letter-spacing="3">EXAM PREPARATION STUDY GUIDE</text>
+  <path d="M74 694h560" stroke="#333" stroke-width="2"/>
+  <text x="74" y="760" fill="#f47735" font-family="Arial,sans-serif" font-size="24" font-weight="700" letter-spacing="3">DIGITAL STUDY RESOURCE</text>
+  <text x="74" y="818" fill="#aaa" font-family="Arial,sans-serif" font-size="20">Independent educational preparation</text>
+</svg>

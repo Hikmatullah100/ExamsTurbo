@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Discover IT certification vendors, professional credentials, and a community for your learning journey."
+    />
+    <meta name="theme-color" content="#071A2F" />
+    <title>ExamsTurbo | IT Certification Directory</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <div class="promo-bar">
+      <div class="container promo-inner">
+        <span
+          ><i class="fa-solid fa-bolt"></i> YOUR CERTIFICATION JOURNEY STARTS
+          HERE</span
+        ><span class="promo-code">EXPLORE <strong>EXAMSTURBO</strong></span>
+      </div>
+    </div>
+    <header class="site-header">
+      <nav class="navbar navbar-expand-xl container">
+        <a
+          class="navbar-brand brand"
+          href="index.html"
+          aria-label="ExamsTurbo home"
+          ><span class="brand-mark"
+            ><img src="assets/images/exams-turbo-icon.png" alt="" aria-hidden="true"></span
+          ><span
+            ><span class="brand-exams">EXAMS</span
+            ><span class="brand-turbo">TURBO</span></span
+          ></a
+        >
+        <button
+          class="navbar-toggler nav-toggle"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#mainNav"
+          aria-controls="mainNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNav">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="index.html"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="vendors.html">Vendors</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="blog.html">Blog</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="community.html">Community</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact</a>
+            </li>
+          </ul>
+          <div class="nav-actions">
+            <button
+              class="cart-button"
+              id="openCart"
+              aria-label="Open shopping cart"
+            >
+              <i class="fa-solid fa-cart-shopping"></i
+              ><span class="cart-label">Cart</span>
+              <span class="cart-count" id="cartCount">0</span>
+            </button>
+            <a
+              class="btn btn-outline-light btn-sm portal-btn"
+              href="login/"
+              >Login Portal</a
+            >
+            <a class="btn btn-orange btn-sm" href="vendors.html"
+              >Start Exploring <i class="fa-solid fa-arrow-right ms-1"></i
+            ></a>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <section class="hero-section">
+        <div class="hero-orb orb-one"></div>
+        <div class="hero-orb orb-two"></div>
+        <div class="container hero-content">
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span> YOUR CERTIFICATION JOURNEY STARTS
+            HERE
+          </div>
+          <h1><span>YOUR GATEWAY TO</span><br /><em>CERTIFICATION EXAM PDFs
+</em></h1>
+          <p class="hero-copy">
+           Explore a wide range of IT certification exam PDFs, discover trusted providers, and find useful study materials to support your exam preparation.
+          </p>
+          <form
+            class="search-shell home-search"
+            id="homeSearchForm"
+            action="vendors.html"
+          >
+            <i class="fa-solid fa-magnifying-glass search-icon"></i
+            ><input
+              id="homeSearch"
+              name="q"
+              type="search"
+              autocomplete="off"
+              placeholder="Search vendors, certifications, or exam codes..."
+              aria-label="Search vendors and certifications"
+            /><button class="btn btn-orange btn-sm" type="submit">
+              Search
+            </button>
+          </form>
+          <div class="trust-row">
+            <div class="trust-pill">
+              <i class="fa-solid fa-link"></i><span>VENDOR PROGRAM LINKS</span>
+            </div>
+            <div class="trust-pill">
+              <i class="fa-solid fa-building"></i
+              ><span
+                ><strong id="homeVendorCount">0</strong> PROVIDERS LISTED</span
+              >
+            </div>
+            <div class="trust-pill">
+              <i class="fa-solid fa-users"></i><span>LEARN TOGETHER</span>
+            </div>
+          </div>
+          <div class="hero-footnote">
+            <span></span> Compare pathways and find the next step that fits your
+            goals
+          </div>
+        </div>
+      </section>
+      <section class="section-pad home-featured">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <div class="section-kicker">START EXPLORING</div>
+              <h2>FEATURED <span>VENDORS</span></h2>
+              <p>
+                Browse leading organizations offering professional IT
+                credentials.
+              </p>
+            </div>
+            <a class="text-link" href="vendors.html"
+              >View all vendors <i class="fa-solid fa-arrow-right ms-1"></i
+            ></a>
+          </div>
+          <div class="home-vm" id="homeVendorMarquee">
+          <div class="home-card-grid">
+            <a class="home-card" href="vendors.html?q=CompTIA"
+              ><span class="home-card-icon">CT</span>
+              <h3>CompTIA</h3>
+              <p>
+                Vendor-neutral credentials for IT support, networking, and
+                security.
+              </p>
+              <span class="text-link"
+                >Explore vendor <i class="fa-solid fa-arrow-right"></i></span
+            ></a>
+            <a class="home-card" href="vendors.html?q=Microsoft"
+              ><span class="home-card-icon">MS</span>
+              <h3>Microsoft</h3>
+              <p>
+                Role-based learning across cloud, data, security, and business
+                apps.
+              </p>
+              <span class="text-link"
+                >Explore vendor <i class="fa-solid fa-arrow-right"></i></span
+            ></a>
+            <a class="home-card" href="vendors.html?q=AWS"
+              ><span class="home-card-icon">AWS</span>
+              <h3>Amazon Web Services</h3>
+              <p>
+                Explore cloud credentials for foundational and advanced skills.
+              </p>
+              <span class="text-link"
+                >Explore vendor <i class="fa-solid fa-arrow-right"></i></span
+            ></a>
+            <a class="home-card" href="vendors.html?q=Cisco"
+              ><span class="home-card-icon">CS</span>
+              <h3>Cisco</h3>
+              <p>
+                Find networking, automation, and infrastructure certification
+                paths.
+              </p>
+              <span class="text-link"
+                >Explore vendor <i class="fa-solid fa-arrow-right"></i></span
+            ></a>
+          </div>
+          </div>
+        </div>
+      </section>
+      <section class="section-pad home-categories">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <div class="section-kicker">FIND YOUR PATH</div>
+              <h2>POPULAR <span>EXAMS</span></h2>
+              <p>
+                Explore credentials and categories in today’s most in-demand
+                technology fields.
+              </p>
+            </div>
+            <a
+              class="text-link"
+              href="vendors.html#certificationCategoryFilters"
+              >All categories <i class="fa-solid fa-arrow-right ms-1"></i
+            ></a>
+          </div>
+          <div class="category-tiles">
+            <a href="vendors.html?q=Cloud%20Computing"
+              ><i class="fa-solid fa-cloud"></i><span>Cloud Computing</span></a
+            ><a href="vendors.html?q=Cybersecurity"
+              ><i class="fa-solid fa-shield-halved"></i
+              ><span>Cybersecurity</span></a
+            ><a href="vendors.html?q=Networking"
+              ><i class="fa-solid fa-network-wired"></i
+              ><span>Networking</span></a
+            ><a href="vendors.html?q=Artificial%20Intelligence"
+              ><i class="fa-solid fa-brain"></i
+              ><span>Artificial Intelligence</span></a
+            >
+          </div>
+        </div>
+      </section>
+      <section class="about-strip section-pad">
+        <div class="container about-inner">
+          <div class="about-icon"><i class="fa-solid fa-compass"></i></div>
+          <div>
+            <div class="section-kicker">A CLEARER WAY FORWARD</div>
+            <h2>BROWSE CERTIFICATION <span>CATEGORIES.</span></h2>
+            <p>
+              Compare learning paths across support, security, data,
+              development, and more.
+            </p>
+          </div>
+          <a
+            href="vendors.html#certificationCategoryFilters"
+            class="btn btn-orange"
+            >Browse Categories <i class="fa-solid fa-arrow-right ms-2"></i
+          ></a>
+        </div>
+      </section>
+      <section class="community-promo section-pad">
+        <div class="container community-promo-inner">
+          <div>
+            <div class="section-kicker">LEARN WITH OTHERS</div>
+            <h2>YOUR NEXT ANSWER COULD BE <span>ONE DISCUSSION AWAY.</span></h2>
+            <p class="muted-copy">
+              Share study strategies, ask questions, and connect with learners
+              navigating the same certification journey. Community discussions
+              are a frontend demo stored locally in this browser.
+            </p>
+            <a class="btn btn-orange mt-3" href="community.html"
+              >Visit the Community <i class="fa-solid fa-arrow-right ms-2"></i
+            ></a>
+          </div>
+          <div class="community-promo-art">
+            <i class="fa-solid fa-comments"></i
+            ><span>LEARN · SHARE · GROW</span>
+          </div>
+        </div>
+      </section>
+      <section class="cta-band section-pad">
+        <div class="container cta-band-inner">
+          <div>
+            <div class="section-kicker">YOUR NEXT STEP STARTS NOW</div>
+            <h2>MAKE YOUR NEXT CERTIFICATION <span>COUNT.</span></h2>
+            <p>Find a provider, choose your path, and get moving.</p>
+          </div>
+          <a class="btn btn-orange" href="vendors.html"
+            >Explore Vendors <i class="fa-solid fa-arrow-right ms-2"></i
+          ></a>
+        </div>
+      </section>
+      <section class="section-pad home-reviews" id="homeReviews" hidden>
+        <div class="container">
+          <div class="hrv-head">
+            <div>
+              <div class="section-kicker">WHAT LEARNERS SAY</div>
+              <h2>USER <span>REVIEWS</span></h2>
+              <p>Real feedback from learners who used our study resources.</p>
+            </div>
+            <div class="hrv-score" data-hrv-score></div>
+          </div>
+          <div class="hrv-viewport"><div class="hrv-track" data-hrv-track></div></div>
+          <div class="text-center mt-4">
+            <a class="text-link" href="vendors.html">Browse exams and leave your review <i class="fa-solid fa-arrow-right ms-1"></i></a>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div class="container footer-main">
+        <div class="footer-brand-col">
+          <a class="brand footer-brand" href="index.html"
+            ><span class="brand-mark"
+              ><img src="assets/images/exams-turbo-icon.png" alt="" aria-hidden="true"></span
+            ><span
+              ><span class="brand-exams">EXAMS</span
+              ><span class="brand-turbo">TURBO</span></span
+            ></a
+          >
+          <p>
+           At ExamsTurbo, we bring IT certification resources and exam PDF providers together in one place, helping learners explore their options and prepare with confidence.
+          </p>
+          <div class="social-links">
+            <a href="community.html" aria-label="Community"
+              ><i class="fa-solid fa-users"></i
+            ></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>QUICK LINKS</h3>
+          <a href="index.html">Home</a><a href="vendors.html">Vendors</a
+          ><a href="blog.html">Blog</a><a href="community.html">Community</a
+          ><a href="about.html">About Us</a><a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h3>OFFICE & SUPPORT</h3>
+          <p><i class="fa-solid fa-envelope"></i> support@example.com</p>
+          <p>Contact details are placeholders.</p>
+        </div>
+        <div class="footer-newsletter">
+          <h3>STAY IN THE LOOP</h3>
+          <p>Get updates about new providers and learning resources.</p>
+          <form id="newsletterForm">
+            <label class="visually-hidden" for="newsletterEmail"
+              >Email address</label
+            >
+            <div class="newsletter-input">
+              <input
+                id="newsletterEmail"
+                type="email"
+                placeholder="Your email address"
+                required
+              /><button type="submit" aria-label="Subscribe">
+                <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </div>
+            <small id="newsletterMessage">No spam. Unsubscribe anytime.</small>
+          </form>
+          <div class="secure-note">
+            <i class="fa-solid fa-lock"></i> SECURE CHECKOUT READY
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="container footer-bottom-inner">
+          <span
+            >© <span id="currentYear"></span> ExamsTurbo. All rights
+            reserved.</span
+          ><span class="payment-methods"
+            ><i class="fa-solid fa-lock"></i> Secure demo</span
+          >
+        </div>
+      </div>
+    </footer>
+    <div class="drawer-backdrop" id="drawerBackdrop"></div>
+    <aside
+      class="cart-drawer"
+      id="cartDrawer"
+      aria-label="Shopping cart"
+      aria-hidden="true"
+    >
+      <div class="drawer-header">
+        <div>
+          <div class="section-kicker">YOUR SELECTION</div>
+          <h2>Shopping Cart <span id="drawerCount">(0)</span></h2>
+        </div>
+        <button id="closeCart" class="drawer-close" aria-label="Close cart">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="drawer-items" id="cartItems"></div>
+      <div class="drawer-empty" id="cartEmpty">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <h3>Your cart is empty</h3>
+        <p>Explore a vendor library and add a product to get started.</p>
+        <a class="btn btn-orange" href="vendors.html">Browse Vendors</a>
+      </div>
+      <div class="drawer-checkout" id="checkoutPanel">
+        <div class="subtotal-row">
+          <span>Subtotal</span><strong id="cartSubtotal">$0.00</strong>
+        </div>
+        <form id="checkoutForm">
+          <label for="checkoutEmail">Email for delivery</label
+          ><input
+            id="checkoutEmail"
+            type="email"
+            placeholder="you@example.com"
+            required
+          /><button type="submit" class="btn btn-orange w-100">
+            Continue to Demo Checkout</button
+          ><small>Demo only — no payment will be processed.</small>
+        </form>
+        <div id="checkoutMessage" class="checkout-message" role="status"></div>
+      </div>
+    </aside>
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+      <div
+        id="siteToast"
+        class="toast custom-toast"
+        role="status"
+        aria-live="polite"
+      >
+        <div class="toast-body">
+          <i class="fa-solid fa-circle-check"></i
+          ><span id="toastMessage">Added to cart</span>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>window.dataReady = new Promise((resolve) => { window.__resolveData = resolve; setTimeout(resolve, 4000); });</script>
+    <script src="js/vendors.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/site.js"></script>
+    <script src="js/home-marquee.js"></script>
+    <script src="js/home-reviews.js"></script>
+    <script type="module" src="./js/supabase.js"></script>
+    <script type="module" src="js/data-loader.js"></script>
+    <script type="module" src="js/forms-api.js"></script>
+    <script type="module" src="js/promo.js"></script>
+  </body>
+</html>

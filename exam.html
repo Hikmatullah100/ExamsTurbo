@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#071A2F" />
+    <title>AACE International Vendor Library | ExamsTurbo</title>
+  </head>
+  <body>
+    <p>
+      Exam details are available inside the AACE International vendor library.
+    </p>
+    <p>
+      <a id="vendorLink" href="vendors.html?vendor=aace-international#vendors"
+        >Open AACE International in Vendors</a
+      >
+    </p>
+    <script>
+      const examId = new URLSearchParams(window.location.search).get("exam");
+      const vendorUrl = new URL("vendors.html", window.location.href);
+      vendorUrl.searchParams.set("vendor", "aace-international");
+      if (examId && /^[a-z0-9-]+$/i.test(examId)) {
+        vendorUrl.searchParams.set("exam", examId);
+      }
+      vendorUrl.hash = "vendors";
+      document.getElementById("vendorLink").href = vendorUrl.href;
+      window.location.replace(vendorUrl.href);
+    </script>
+    <script type="module" src="js/promo.js"></script>
+  </body>
+</html>

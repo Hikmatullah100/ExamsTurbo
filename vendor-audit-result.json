@@ -1,0 +1,12 @@
+{
+  "totalVendorsProvided": 357,
+  "uniqueVendorsProvided": 357,
+  "totalVendorsCurrentlyPresent": 357,
+  "missingVendorNames": [],
+  "duplicateEntriesInProvidedList": [],
+  "duplicateEntriesInCurrentDatabase": [],
+  "extraVendorNames": [],
+  "alphabetical": true,
+  "firstVendor": "A10 Networks",
+  "lastVendor": "Zscaler"
+}

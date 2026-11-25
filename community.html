@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Ask questions, share study strategies, and join IT certification discussions."
+    />
+    <meta name="theme-color" content="#071A2F" />
+    <title>Community | ExamsTurbo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/blog-community.css" />
+  </head>
+  <body>
+    <div class="promo-bar">
+      <div class="container promo-inner">
+        <span
+          ><i class="fa-solid fa-users"></i> LEARN TOGETHER. GROW
+          TOGETHER.</span
+        >
+      </div>
+    </div>
+    <header class="site-header">
+      <nav class="navbar navbar-expand-xl container">
+        <a class="navbar-brand brand" href="index.html"
+          ><span class="brand-mark"
+              ><img src="assets/images/exams-turbo-icon.png" alt="" aria-hidden="true"></span
+          ><span><span class="brand-exams">EXAMS</span><span class="brand-turbo">TURBO</span></span></a
+        ><button
+          class="navbar-toggler nav-toggle"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#mainNav"
+          aria-controls="mainNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNav">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="vendors.html">Vendors</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="blog.html">Blog</a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                href="community.html"
+                >Community</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact</a>
+            </li>
+          </ul>
+          <div class="nav-actions">
+            <button
+              class="cart-button"
+              id="openCart"
+              aria-label="Open shopping cart"
+            >
+              <i class="fa-solid fa-cart-shopping"></i
+              ><span class="cart-label">Cart</span
+              ><span class="cart-count" id="cartCount">0</span></button
+            ><button
+              class="btn btn-outline-light btn-sm"
+              id="navAuthButton"
+              type="button"
+            >
+              Login</button
+            ><a class="btn btn-orange btn-sm" href="#askQuestion"
+              >Ask a Question</a
+            >
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <section class="page-hero community-hero">
+        <div class="container">
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span> CONNECT WITH CERTIFICATION
+            LEARNERS
+          </div>
+          <h1>THE EXAMSTURBO <em>COMMUNITY</em></h1>
+          <p class="hero-copy">
+            A place to trade study tips, compare learning paths, and help each
+            other keep moving forward.
+          </p>
+          <button class="btn btn-orange" id="joinCommunity" type="button">
+            Login / Sign up <i class="fa-solid fa-arrow-right ms-2"></i>
+          </button>
+        </div>
+      </section>
+      <section class="section-pad">
+        <div class="container">
+          <div class="community-intro">
+            <div>
+              <div class="section-kicker">WELCOME, LEARNER</div>
+              <h2>GOOD QUESTIONS BUILD <span>GREAT CAREERS.</span></h2>
+              <p class="muted-copy">
+                Whether you are choosing your first credential or preparing for
+                an advanced exam, this community makes it easier to find
+                discussions and share what works for you. Log in to post, reply,
+                and like. Every new post is reviewed before it goes live.
+              </p>
+            </div>
+            <div class="community-stats">
+              <div><strong>4</strong><span>TOPIC AREAS</span></div>
+              <div>
+                <strong id="discussionCount">0</strong
+                ><span>DISCUSSIONS</span>
+              </div>
+              <div><strong>Login</strong><span>REQUIRED TO POST</span></div>
+            </div>
+          </div>
+          <div class="discussion-layout">
+            <div class="discussion-main">
+              <div class="section-heading discussion-heading">
+                <div>
+                  <div class="section-kicker">COMMUNITY BOARD</div>
+                  <h2>RECENT <span>DISCUSSIONS</span></h2>
+                </div>
+                <a href="#askQuestion" class="btn btn-orange"
+                  >Start a discussion</a
+                >
+              </div>
+              <div class="topic-filters" id="topicFilters">
+                <button
+                  type="button"
+                  class="category-filter-btn active"
+                  data-topic="All"
+                >
+                  All topics</button
+                ><button
+                  type="button"
+                  class="category-filter-btn"
+                  data-topic="Study Tips"
+                >
+                  Study Tips</button
+                ><button
+                  type="button"
+                  class="category-filter-btn"
+                  data-topic="Cloud"
+                >
+                  Cloud</button
+                ><button
+                  type="button"
+                  class="category-filter-btn"
+                  data-topic="Cybersecurity"
+                >
+                  Cybersecurity</button
+                ><button
+                  type="button"
+                  class="category-filter-btn"
+                  data-topic="Career Advice"
+                >
+                  Career Advice
+                </button>
+              </div>
+              <p class="form-feedback" id="communityNotice" role="status"></p>
+              <div
+                class="discussion-list"
+                id="discussionList"
+                aria-live="polite"
+              >
+                <p class="discussion-empty">Loading discussions...</p>
+              </div>
+              <section class="ask-panel" id="askQuestion">
+                <div class="section-kicker">SHARE WITH THE COMMUNITY</div>
+                <h2>ASK A <span>QUESTION.</span></h2>
+                <p class="muted-copy">
+                  Post a question for the community. New posts are reviewed by
+                  an admin and appear for everyone once approved.
+                </p>
+                <div class="ask-login-prompt" id="askLoginPrompt">
+                  <p>Please log in to post a question.</p>
+                  <button
+                    class="btn btn-orange"
+                    type="button"
+                    data-open-auth="login"
+                  >
+                    Login</button
+                  >
+                  <button
+                    class="btn btn-outline-light"
+                    type="button"
+                    data-open-auth="signup"
+                  >
+                    Create account
+                  </button>
+                </div>
+                <form id="questionForm" class="site-form" hidden>
+                  <label for="questionTitle">Question title</label
+                  ><input
+                    id="questionTitle"
+                    name="title"
+                    type="text"
+                    minlength="3"
+                    maxlength="120"
+                    required
+                    placeholder="What would you like to know?"
+                  /><label for="questionTopic">Discussion category</label
+                  ><select id="questionTopic" name="topic" required>
+                    <option>Study Tips</option>
+                    <option>Cloud</option>
+                    <option>Cybersecurity</option>
+                    <option>Career Advice</option></select
+                  ><label for="questionDetails">Add context</label
+                  ><textarea
+                    id="questionDetails"
+                    name="details"
+                    rows="4"
+                    minlength="3"
+                    maxlength="1000"
+                    required
+                    placeholder="Share a little more detail..."
+                  ></textarea
+                  ><button class="btn btn-orange" type="submit">
+                    Post Question <i class="fa-solid fa-paper-plane ms-2"></i>
+                  </button>
+                  <p
+                    class="form-feedback"
+                    id="questionFeedback"
+                    role="status"
+                  ></p>
+                </form>
+              </section>
+            </div>
+            <aside class="community-sidebar">
+              <section class="sidebar-card">
+                <div class="section-kicker">DISCUSSION CATEGORIES</div>
+                <h3>EXPLORE TOPICS</h3>
+                <div class="sidebar-topics">
+                  <button data-sidebar-topic="Study Tips">
+                    <i class="fa-solid fa-book-open"></i> Study Tips
+                    <span data-count-for="Study Tips">00</span></button
+                  ><button data-sidebar-topic="Cloud">
+                    <i class="fa-solid fa-cloud"></i> Cloud
+                    <span data-count-for="Cloud">00</span></button
+                  ><button data-sidebar-topic="Cybersecurity">
+                    <i class="fa-solid fa-shield-halved"></i> Cybersecurity
+                    <span data-count-for="Cybersecurity">00</span></button
+                  ><button data-sidebar-topic="Career Advice">
+                    <i class="fa-solid fa-compass"></i> Career Advice
+                    <span data-count-for="Career Advice">00</span>
+                  </button>
+                </div>
+              </section>
+              <section class="sidebar-card">
+                <div class="section-kicker">HOW IT WORKS</div>
+                <h3>POST WITH CONFIDENCE</h3>
+                <ol class="how-list">
+                  <li>Create a free account and log in.</li>
+                  <li>Post your question. An admin reviews it first.</li>
+                  <li>
+                    Once approved, it appears for everyone and members can reply
+                    and like.
+                  </li>
+                </ol>
+              </section>
+              <section class="sidebar-card popular-topics">
+                <div class="section-kicker">POPULAR TOPICS</div>
+                <h3>ON LEARNERS’ MINDS</h3>
+                <a href="#discussionList"># study-plans</a
+                ><a href="#discussionList"># cloud-certifications</a
+                ><a href="#discussionList"># exam-preparation</a
+                ><a href="#discussionList"># career-change</a>
+              </section>
+            </aside>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div class="container footer-main">
+        <div class="footer-brand-col">
+          <a class="brand footer-brand" href="index.html"
+            ><span class="brand-mark"
+              ><img src="assets/images/exams-turbo-icon.png" alt="" aria-hidden="true"></span
+            ><span><span class="brand-exams">EXAMS</span><span class="brand-turbo">TURBO</span></span></a
+          >
+          <p>Discover providers, credentials, and learning resources.</p>
+        </div>
+        <div class="footer-col">
+          <h3>QUICK LINKS</h3>
+          <a href="index.html">Home</a><a href="vendors.html">Vendors</a
+          ><a href="blog.html">Blog</a><a href="community.html">Community</a
+          ><a href="about.html">About Us</a><a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h3>COMMUNITY</h3>
+          <a href="#askQuestion">Ask a Question</a>
+          <p>Moderated community discussions.</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="container footer-bottom-inner">
+          <span
+            >© <span id="currentYear"></span> ExamsTurbo. All rights
+            reserved.</span
+          ><span>ExamsTurbo Community</span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Login / Sign up popup -->
+    <div
+      class="modal fade"
+      id="authModal"
+      tabindex="-1"
+      aria-labelledby="authModalTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content auth-modal">
+          <div class="modal-header">
+            <h2 class="modal-title" id="authModalTitle">Login</h2>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="auth-tabs">
+              <button type="button" class="active" data-auth-mode="login">
+                Login
+              </button>
+              <button type="button" data-auth-mode="signup">Sign up</button>
+            </div>
+            <form id="authForm" class="site-form">
+              <div id="authNameWrap" hidden>
+                <label for="authName">Your name</label>
+                <input
+                  id="authName"
+                  type="text"
+                  maxlength="60"
+                  autocomplete="name"
+                  placeholder="Name shown on your posts"
+                />
+              </div>
+              <label for="authEmail">Email</label>
+              <input
+                id="authEmail"
+                type="email"
+                autocomplete="email"
+                required
+                placeholder="you@example.com"
+              />
+              <label for="authPassword">Password</label>
+              <input
+                id="authPassword"
+                type="password"
+                minlength="6"
+                autocomplete="current-password"
+                required
+                placeholder="At least 6 characters"
+              />
+              <button class="btn btn-orange w-100" id="authSubmit" type="submit">
+                Login
+              </button>
+              <p class="form-feedback" id="authFeedback" role="status"></p>
+            </form>
+            <p class="auth-note">
+              You need an account only to post, reply, or like. Reading is open
+              to everyone.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="drawer-backdrop" id="drawerBackdrop"></div>
+    <aside
+      class="cart-drawer"
+      id="cartDrawer"
+      aria-label="Shopping cart"
+      aria-hidden="true"
+    >
+      <div class="drawer-header">
+        <div>
+          <div class="section-kicker">YOUR SELECTION</div>
+          <h2>Shopping Cart <span id="drawerCount">(0)</span></h2>
+        </div>
+        <button id="closeCart" class="drawer-close" aria-label="Close cart">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="drawer-items" id="cartItems"></div>
+      <div class="drawer-empty" id="cartEmpty">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <h3>Your cart is empty</h3>
+        <p>Explore a vendor library and add a product.</p>
+        <a class="btn btn-orange" href="vendors.html">Browse Vendors</a>
+      </div>
+      <div class="drawer-checkout" id="checkoutPanel">
+        <div class="subtotal-row">
+          <span>Subtotal</span><strong id="cartSubtotal">$0.00</strong>
+        </div>
+        <form id="checkoutForm">
+          <label for="checkoutEmail">Email for delivery</label
+          ><input
+            id="checkoutEmail"
+            type="email"
+            placeholder="you@example.com"
+            required
+          /><button type="submit" class="btn btn-orange w-100">
+            Continue to Demo Checkout</button
+          ><small>Demo only — no payment will be processed.</small>
+        </form>
+        <div id="checkoutMessage" class="checkout-message" role="status"></div>
+      </div>
+    </aside>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="js/community.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/site.js"></script>
+    <script type="module" src="js/promo.js"></script>
+  </body>
+</html>
