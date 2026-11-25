@@ -11,13 +11,13 @@
       Exam details are available inside the AACE International vendor library.
     </p>
     <p>
-      <a id="vendorLink" href="vendors.html?vendor=aace-international#vendors"
+      <a id="vendorLink" href="/vendors/?vendor=aace-international#vendors"
         >Open AACE International in Vendors</a
       >
     </p>
     <script>
       const examId = new URLSearchParams(window.location.search).get("exam");
-      const vendorUrl = new URL("vendors.html", window.location.href);
+      const vendorUrl = new URL("/vendors/", window.location.href);
       vendorUrl.searchParams.set("vendor", "aace-international");
       if (examId && /^[a-z0-9-]+$/i.test(examId)) {
         vendorUrl.searchParams.set("exam", examId);

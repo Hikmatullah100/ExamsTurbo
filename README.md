@@ -16,6 +16,14 @@ The project uses CDN-hosted Bootstrap, Font Awesome, and Google Fonts, so an int
 ```text
 certification-directory/
 ├── index.html
+├── blog/
+│   └── index.html
+├── vendors/
+│   └── index.html
+├── about/
+│   └── index.html
+├── contact/
+│   └── index.html
 ├── exams.html
 ├── exam.html
 ├── css/
@@ -39,6 +47,10 @@ certification-directory/
 ├── dashboard/
 └── README.md
 ```
+
+The homepage is served from `/`, and the Blog, Vendors, About, and Contact pages
+are served from `/blog/`, `/vendors/`, `/about/`, and `/contact/`. Their
+corresponding root-level `.html` files are retained for compatibility.
 
 ## Vendor-specific exam libraries
 

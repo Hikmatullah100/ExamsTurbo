@@ -1,5 +1,5 @@
 // Blog: posts Supabase (blog_posts table) se aate hain.
-// blog.html par list + category filter, blog-post.html par poora article.
+// /blog/ par list + category filter, blog-post.html par poora article.
 import { supabaseClient as sb } from "./supabase.js";
 
 const esc = (value) =>
@@ -64,7 +64,7 @@ async function initList() {
       ? shown
           .map(
             (p) => `
-        <a class="blogx-card" href="blog-post.html?slug=${encodeURIComponent(p.slug)}" aria-label="Read ${esc(p.title)}">
+        <a class="blogx-card" href="/blog-post.html?slug=${encodeURIComponent(p.slug)}" aria-label="Read ${esc(p.title)}">
           <div class="blogx-cover">${coverHTML(p)}<span class="blogx-tag">${esc(p.category)}</span></div>
           <div class="blogx-body">
             <h3>${esc(p.title)}</h3>
@@ -127,7 +127,7 @@ async function initPost() {
       <div class="blogx-status">
         <h1 style="font-size:28px">Article not found</h1>
         <p>This article may have been moved or is not published.</p>
-        <a class="btn btn-orange" href="blog.html">Back to all articles</a>
+        <a class="btn btn-orange" href="/blog/">Back to all articles</a>
       </div>`;
   };
   if (!slug) return notFound();
@@ -158,7 +158,7 @@ async function initPost() {
     .join("");
 
   root.innerHTML = `
-    <a class="text-link" href="blog.html"><i class="fa-solid fa-arrow-left me-1"></i> All articles</a>
+    <a class="text-link" href="/blog/"><i class="fa-solid fa-arrow-left me-1"></i> All articles</a>
     <div class="blogx-article-head">
       <span class="blogx-tag static">${esc(post.category)}</span>
       <h1>${esc(post.title)}</h1>

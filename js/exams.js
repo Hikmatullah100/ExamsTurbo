@@ -146,7 +146,7 @@
         .map(
           (exam) => `
         <article class="exam-card">
-          <a class="exam-card-link" href="exam.html?exam=${encodeURIComponent(exam.id)}" aria-label="View details for ${escapeHTML(exam.examTitle)}">
+          <a class="exam-card-link" href="/exam.html?exam=${encodeURIComponent(exam.id)}" aria-label="View details for ${escapeHTML(exam.examTitle)}">
             <div class="exam-card-heading">
               <div>
                 <span class="exam-card-code" aria-hidden="true">${escapeHTML(exam.examCode)}</span>
@@ -241,7 +241,7 @@
     document.querySelector('meta[property="og:image"]').content =
       exam.coverImage;
     document.querySelector('link[rel="canonical"]').href =
-      `exam.html?exam=${encodeURIComponent(exam.id)}`;
+      `/exam.html?exam=${encodeURIComponent(exam.id)}`;
 
     document.querySelectorAll("[data-purchase]").forEach((button) => {
       button.addEventListener("click", () => {

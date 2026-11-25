@@ -593,7 +593,7 @@
               const price = hasPrice
                 ? `$${Number(exam.price).toFixed(2)}`
                 : "";
-              const detailUrl = `vendors.html?vendor=${encodeURIComponent(exam.vendorId)}&exam=${encodeURIComponent(exam.id)}`;
+              const detailUrl = `/vendors/?vendor=${encodeURIComponent(exam.vendorId)}&exam=${encodeURIComponent(exam.id)}`;
               return `
           <li>
             <a class="vendor-exam-row" href="${escapeHTML(detailUrl)}" data-exam-id="${escapeHTML(exam.id)}" aria-label="View details for ${escapeHTML(exam.examTitle)}">

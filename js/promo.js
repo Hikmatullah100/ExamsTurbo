@@ -15,7 +15,8 @@ function safeUrl(value) {
 }
 
 function pageKey() {
-  const file = window.location.pathname.split("/").pop() || "index.html";
+  const segments = window.location.pathname.split("/").filter(Boolean);
+  const file = segments[segments.length - 1] || "index.html";
   const name = file.replace(/\.html$/i, "").toLowerCase();
   return name === "index" || name === "" ? "home" : name;
 }

@@ -202,7 +202,7 @@ const SECTIONS = [
       { name: "message", label: "Message", type: "text", required: true, max: 200 },
       { name: "kind", label: "Kind (color)", type: "select", options: KINDS, required: true },
       { name: "link_text", label: "Link text", type: "text", hint: "For example Shop Now (optional)." },
-      { name: "link_url", label: "Link URL", type: "text", hint: "For example vendors.html or https://..." },
+      { name: "link_url", label: "Link URL", type: "text", hint: "For example /vendors/ or https://..." },
       { name: "sort_order", label: "Order (lower number first)", type: "number", omitEmpty: true },
       { name: "starts_at", label: "Starts at", type: "datetime" },
       { name: "ends_at", label: "Ends at", type: "datetime" },

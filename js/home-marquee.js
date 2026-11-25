@@ -24,7 +24,7 @@
   function chip(v) {
     var a = document.createElement("a");
     a.className = "vm-chip";
-    a.href = "vendors.html?q=" + encodeURIComponent(v.name);
+    a.href = "/vendors/?q=" + encodeURIComponent(v.name);
     var logo = document.createElement("span");
     logo.className = "vm-logo";
     if (v.logoUrl) {

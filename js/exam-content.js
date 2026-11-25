@@ -485,7 +485,7 @@ export function initExamContent({ sb, bucket }) {
   function runCommand(cmd) {
     restoreRange();
     if (cmd === "link") {
-      const raw = prompt("Link URL (https://... or a page on this site like vendors.html)");
+      const raw = prompt("Link URL (https://... or a page on this site like /vendors/)");
       if (raw === null) return;
       const url = safeUrl(raw);
       if (!url) return feedback("That link is not allowed. Use https://... or a site page.");
