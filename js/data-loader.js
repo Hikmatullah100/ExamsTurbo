@@ -5,6 +5,13 @@ import { supabaseClient } from "./supabase.js";
 // exam-public.js reviews ke liye isi client ko use karta hai
 window.supabaseClient = supabaseClient;
 
+function rootAssetUrl(value, fallback) {
+  const url = String(value || "").trim();
+  if (!url) return fallback;
+  if (/^(?:[a-z][a-z0-9+.-]*:|\/\/|\/)/i.test(url)) return url;
+  return `/${url.replace(/^(?:\.\.\/|\.\/)+/, "")}`;
+}
+
 function toVendor(row) {
   return {
     id: row.id,
@@ -12,7 +19,7 @@ function toVendor(row) {
     sortName: row.sort_name || undefined,
     officialUrl: row.official_url,
     libraryUrl: row.official_url,
-    logoUrl: row.logo_url,
+    logoUrl: rootAssetUrl(row.logo_url),
     logoText: row.logo_text,
     category: (row.categories && row.categories[0]) || "Vendor Directory",
     categories: row.categories || [],
@@ -47,6 +54,9 @@ async function loadVendors() {
 function toExam(row) {
   const vendor = (window.VENDORS || []).find((v) => v.id === row.vendor_id);
   const vendorName = vendor?.name || row.vendor_id;
+  const defaultCover = /ccp/i.test(row.exam_code || row.name || "")
+    ? "/assets/exam-covers/aace-ccp.svg"
+    : "/assets/exam-covers/aace-psp.jpeg";
   // buildExamArticle js/exams.js me banta hai (wo is file se pehle load hoti hai)
   const article = window.buildExamArticle
     ? window.buildExamArticle(vendorName)
@@ -64,7 +74,7 @@ function toExam(row) {
     updatedYear: row.updated_year || "2026",
     price: row.price,
     accessType: row.access_type || "Instant Access",
-    coverImage: row.cover_image || "assets/exam-covers/aace-psp.jpeg",
+    coverImage: rootAssetUrl(row.cover_image, defaultCover),
     benefits: article ? article.benefits : [],
     article,
   };

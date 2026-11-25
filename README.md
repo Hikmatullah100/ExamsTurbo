@@ -18,6 +18,8 @@ certification-directory/
 ├── index.html
 ├── blog/
 │   └── index.html
+├── community/
+│   └── index.html
 ├── vendors/
 │   └── index.html
 ├── about/
@@ -48,13 +50,17 @@ certification-directory/
 └── README.md
 ```
 
-The homepage is served from `/`, and the Blog, Vendors, About, and Contact pages
-are served from `/blog/`, `/vendors/`, `/about/`, and `/contact/`. Their
-corresponding root-level `.html` files are retained for compatibility.
+The homepage is served from `/`, and the Blog, Vendors, Community, About, and
+Contact pages are served from `/blog/`, `/vendors/`, `/community/`, `/about/`,
+and `/contact/`. The corresponding root-level `.html` pages remain available
+for backward compatibility.
+Exam details use `/exams/{exam-code}`; `404.html` restores these static routes
+through the existing Vendor Library so direct visits and refreshes work on
+GitHub Pages.
 
 ## Vendor-specific exam libraries
 
-`js/exams.js` stores the two user-provided AACE International exam records and exposes them as `window.EXAMS`. Each exam has a `vendorId`; `js/main.js` filters by the open vendor ID and renders matching exam cards in that vendor's library modal. Selecting a card opens its cover, exam details, benefits, purchase panel, and shared article in the same modal; it does not navigate to a separate detail page. The article content is editable in the AACE detail section in `vendors.html`.
+`js/exams.js` stores the two user-provided AACE International exam records and exposes them as `window.EXAMS`. Each exam has a `vendorId`; `js/main.js` filters by the open vendor ID and renders matching exam cards in that vendor's library modal. Selecting a card updates the address to `/exams/{exam-code}` and opens its cover, exam details, benefits, purchase panel, and shared article in the same modal; it does not load a separate detail page. Direct visits and refreshes are restored through `404.html`. Records with the same exam code share one URL and resolve to the first matching record in the loaded data. The article content is editable in the AACE detail section in `vendors/index.html`.
 
 The detail view's Add to Cart button uses the existing LocalStorage cart. Buy Now and contribution controls display clear integration messages; checkout and article submission are not connected, and no payment or order is created. `exams.html` and `exam.html` are compatibility redirects to the AACE International vendor view; an exam query opens that exam's inline detail view. There is no separate Exam Library navigation item. The counts, prices, and descriptions in the retained exam records are user-provided and not independently verified. Do not treat them as official AACE information.
 

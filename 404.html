@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#071A2F" />
+    <title>Exam Not Found | ExamsTurbo</title>
+  </head>
+  <body>
+    <p>This exam could not be found.</p>
+    <p><a href="/vendors/">Browse the vendor library</a></p>
+    <script>
+      const match = window.location.pathname.match(
+        /^\/exams\/([a-z0-9-]+)\/?$/i,
+      );
+      if (match) {
+        sessionStorage.setItem(
+          "examTurboPendingPath",
+          `/exams/${match[1].toLowerCase()}`,
+        );
+        window.location.replace("/vendors/");
+      }
+    </script>
+  </body>
+</html>

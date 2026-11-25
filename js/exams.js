@@ -40,7 +40,16 @@
     };
   };
 
-  const DEFAULT_EXAM_COVER = "assets/exam-covers/aace-psp.jpeg";
+  const DEFAULT_EXAM_COVER = "/assets/exam-covers/aace-psp.jpeg";
+  const examRoute = (exam) => {
+    const code = String(exam.examCode || exam.code || "")
+      .trim()
+      .toLowerCase()
+      .replace(/[^a-z0-9-]+/g, "-")
+      .replace(/-+/g, "-")
+      .replace(/^-|-$/g, "");
+    return code ? `/exams/${code}` : "";
+  };
 
   // Static fallback data (agar Supabase se exams na aayen)
   let EXAMS = [
@@ -82,7 +91,10 @@
     },
   ].map((exam) => ({
     ...exam,
-    coverImage: DEFAULT_EXAM_COVER,
+    coverImage:
+      exam.examCode === "CCP"
+        ? "/assets/exam-covers/aace-ccp.svg"
+        : DEFAULT_EXAM_COVER,
   }));
 
   window.EXAMS = EXAMS;
@@ -146,7 +158,7 @@
         .map(
           (exam) => `
         <article class="exam-card">
-          <a class="exam-card-link" href="/exam.html?exam=${encodeURIComponent(exam.id)}" aria-label="View details for ${escapeHTML(exam.examTitle)}">
+          <a class="exam-card-link" href="${escapeHTML(examRoute(exam) || "#")}" aria-label="View details for ${escapeHTML(exam.examTitle)}">
             <div class="exam-card-heading">
               <div>
                 <span class="exam-card-code" aria-hidden="true">${escapeHTML(exam.examCode)}</span>
@@ -241,7 +253,7 @@
     document.querySelector('meta[property="og:image"]').content =
       exam.coverImage;
     document.querySelector('link[rel="canonical"]').href =
-      `/exam.html?exam=${encodeURIComponent(exam.id)}`;
+      examRoute(exam) || window.location.href;
 
     document.querySelectorAll("[data-purchase]").forEach((button) => {
       button.addEventListener("click", () => {

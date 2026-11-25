@@ -184,7 +184,7 @@ function openPopup(popup) {
   const imageUrl = safeUrl(popup.image_url);
   if (imageUrl) {
     const img = document.createElement("img");
-    img.src = imageUrl;
+    img.src = new URL(imageUrl, window.location.origin).href;
     img.alt = "";
     img.addEventListener("error", () => img.remove());
     card.append(img);

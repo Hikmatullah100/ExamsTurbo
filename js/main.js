@@ -27,7 +27,15 @@
   let activeSearchSuggestionIndex = -1;
   const examLibrary = Array.isArray(window.EXAMS) ? window.EXAMS : [];
   const vendorsById = new Map(vendors.map((vendor) => [vendor.id, vendor]));
-  const defaultExamCover = "assets/exam-covers/aace-psp.jpeg";
+  const defaultExamCover = "/assets/exam-covers/aace-psp.jpeg";
+  const examPathPattern = /^\/exams\/([a-z0-9-]+)\/?$/i;
+  const examCodeSlug = (exam) =>
+    String(exam?.examCode || exam?.code || "")
+      .trim()
+      .toLowerCase()
+      .replace(/[^a-z0-9-]+/g, "-")
+      .replace(/-+/g, "-")
+      .replace(/^-|-$/g, "");
   const certificationCategories = window.CERTIFICATION_CATEGORIES || [];
   const initialSearch = new URLSearchParams(window.location.search).get("q");
   if (initialSearch) search.value = initialSearch;
@@ -485,8 +493,9 @@
     modalDialog.classList.add("modal-xl");
     vendorExamActionStatus.textContent = "";
 
+    const coverImage = exam.coverImage || defaultExamCover;
     const cover = document.getElementById("vendorExamCover");
-    cover.src = defaultExamCover;
+    cover.src = coverImage;
     cover.alt = `${exam.vendor} ${exam.examCode} exam preparation study guide cover`;
     document.getElementById("vendorExamVendor").textContent = exam.vendor;
     document.getElementById("vendorExamDetailTitle").textContent =
@@ -515,7 +524,7 @@
       `Buy Now for $${Number(exam.price).toFixed(2)}`;
 
     const previewImage = document.getElementById("examCoverPreviewImage");
-    previewImage.src = defaultExamCover;
+    previewImage.src = coverImage;
     previewImage.alt = cover.alt;
     window.dispatchEvent(new CustomEvent("exam:detail", { detail: exam }));
   }
@@ -593,12 +602,13 @@
               const price = hasPrice
                 ? `$${Number(exam.price).toFixed(2)}`
                 : "";
-              const detailUrl = `/vendors/?vendor=${encodeURIComponent(exam.vendorId)}&exam=${encodeURIComponent(exam.id)}`;
+              const codeSlug = examCodeSlug(exam);
+              const detailUrl = codeSlug ? `/exams/${codeSlug}` : "#";
               return `
           <li>
             <a class="vendor-exam-row" href="${escapeHTML(detailUrl)}" data-exam-id="${escapeHTML(exam.id)}" aria-label="View details for ${escapeHTML(exam.examTitle)}">
             <div class="vendor-exam-row-information">
-              <img class="vendor-exam-row-cover" src="${defaultExamCover}" alt="${escapeHTML(exam.examCode)} exam preparation book cover" loading="lazy" decoding="async">
+              <img class="vendor-exam-row-cover" src="${escapeHTML(exam.coverImage || defaultExamCover)}" alt="${escapeHTML(exam.examCode)} exam preparation book cover" loading="lazy" decoding="async">
               <div>
                 <span class="vendor-exam-row-code">${escapeHTML(exam.examCode)}</span>
                 ${metrics.length ? `<span class="vendor-exam-row-meta">${metrics.map(escapeHTML).join(" · ")}</span>` : ""}
@@ -650,11 +660,32 @@
     const exam = activeVendorLibraryExams.find(
       (item) => item.id === card.dataset.examId,
     );
-    if (exam) showVendorExamDetail(exam);
+    if (exam) {
+      const codeSlug = examCodeSlug(exam);
+      if (!codeSlug) {
+        showVendorExamDetail(exam);
+        return;
+      }
+      window.history.pushState(
+        { examCode: codeSlug, vendorId: exam.vendorId },
+        "",
+        `/exams/${codeSlug}`,
+      );
+      openExamRoute(codeSlug);
+    }
   });
   document
     .getElementById("backToExamLibrary")
-    .addEventListener("click", () => showVendorExamLibrary());
+    .addEventListener("click", () => {
+      if (examPathPattern.test(window.location.pathname)) {
+        window.history.replaceState(
+          { vendorId: currentVendor?.id },
+          "",
+          "/vendors/",
+        );
+      }
+      showVendorExamLibrary();
+    });
   document.getElementById("previewExamCover").addEventListener("click", () => {
     if (activeExam) document.getElementById("examCoverPreview").showModal();
   });
@@ -706,18 +737,55 @@
     if (exam) window.CertiCart?.add(exam, currentVendor.name);
   });
 
+  function openExamRoute(codeSlug) {
+    const exam = examLibrary.find(
+      (item) => examCodeSlug(item) === codeSlug.toLowerCase(),
+    );
+    const vendor = exam && vendorsById.get(exam.vendorId);
+    if (!exam || !vendor) return false;
+    openVendor(vendor, exam.id);
+    return true;
+  }
+
+  window.addEventListener("popstate", () => {
+    const match = window.location.pathname.match(examPathPattern);
+    if (match) {
+      if (!openExamRoute(match[1])) {
+        window.history.replaceState(null, "", "/vendors/");
+      }
+    } else if (activeExam) {
+      showVendorExamLibrary();
+    }
+  });
+
   const heroVendorCount = document.getElementById("heroVendorCount");
   if (heroVendorCount) heroVendorCount.textContent = vendors.length;
   renderAll();
-  const requestedVendor = new URLSearchParams(window.location.search).get(
-    "vendor",
-  );
-  if (requestedVendor) {
-    const vendor = vendors.find((item) => item.id === requestedVendor);
-    if (vendor)
-      openVendor(
-        vendor,
-        new URLSearchParams(window.location.search).get("exam") || "",
+
+  const pendingPath = sessionStorage.getItem("examTurboPendingPath");
+  if (pendingPath) {
+    sessionStorage.removeItem("examTurboPendingPath");
+    const pendingMatch = pendingPath.match(examPathPattern);
+    if (pendingMatch) {
+      window.history.replaceState(
+        { examCode: pendingMatch[1].toLowerCase() },
+        "",
+        `/exams/${pendingMatch[1].toLowerCase()}`,
       );
+    }
+  }
+
+  const examRoute = window.location.pathname.match(examPathPattern);
+  if (examRoute) {
+    if (!openExamRoute(examRoute[1])) {
+      window.history.replaceState(null, "", "/vendors/");
+    }
+  } else {
+    const query = new URLSearchParams(window.location.search);
+    const requestedVendor = query.get("vendor");
+    if (requestedVendor) {
+      const vendor = vendors.find((item) => item.id === requestedVendor);
+      if (vendor) openVendor(vendor, query.get("exam") || "");
+    }
   }
 })();

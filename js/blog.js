@@ -9,6 +9,12 @@ const esc = (value) =>
       ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c],
   );
 
+const rootAssetUrl = (value) => {
+  const url = String(value || "").trim();
+  if (!url || /^(?:[a-z][a-z0-9+.-]*:|\/\/|\/)/i.test(url)) return url;
+  return `/${url.replace(/^(?:\.\.\/|\.\/)+/, "")}`;
+};
+
 const fmtDate = (iso) =>
   new Date(iso).toLocaleDateString("en-US", {
     year: "numeric",
@@ -30,7 +36,7 @@ const fallbackCover = (post) =>
 
 const coverHTML = (post) =>
   post.cover_image
-    ? `<img src="${esc(post.cover_image)}" alt="${esc(post.title)}" loading="lazy" decoding="async" data-cover>`
+    ? `<img src="${esc(rootAssetUrl(post.cover_image))}" alt="${esc(post.title)}" loading="lazy" decoding="async" data-cover>`
     : fallbackCover(post);
 
 const metaLine = (post) =>
@@ -156,6 +162,7 @@ async function initPost() {
     .filter(Boolean)
     .map((p) => `<p>${esc(p)}</p>`)
     .join("");
+  const coverImage = rootAssetUrl(post.cover_image);
 
   root.innerHTML = `
     <a class="text-link" href="/blog/"><i class="fa-solid fa-arrow-left me-1"></i> All articles</a>
@@ -164,7 +171,7 @@ async function initPost() {
       <h1>${esc(post.title)}</h1>
       <div class="blogx-meta">${metaLine(post)}</div>
     </div>
-    ${post.cover_image ? `<img class="blogx-article-cover" src="${esc(post.cover_image)}" alt="${esc(post.title)}" decoding="async">` : ""}
+    ${coverImage ? `<img class="blogx-article-cover" src="${esc(coverImage)}" alt="${esc(post.title)}" decoding="async">` : ""}
     <div class="blogx-article-body">${paragraphs}</div>
     <p class="blogx-disclaimer">Articles are general guidance; verify program specifics with official providers.</p>`;
 }

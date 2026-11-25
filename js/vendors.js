@@ -485,7 +485,7 @@ window.VENDORS = [
     "name": "Alibaba Cloud",
     "officialUrl": null,
     "libraryUrl": null,
-    "logoUrl": "assets/vendor-logos/alibaba-cloud.svg",
+    "logoUrl": "/assets/vendor-logos/alibaba-cloud.svg",
     "logoText": "Alibaba Cloud",
     "category": "Vendor Directory",
     "categories": [
@@ -577,7 +577,7 @@ window.VENDORS = [
     "name": "Android",
     "officialUrl": null,
     "libraryUrl": null,
-    "logoUrl": "assets/vendor-logos/android.svg",
+    "logoUrl": "/assets/vendor-logos/android.svg",
     "logoText": "Android",
     "category": "Vendor Directory",
     "categories": [
@@ -594,7 +594,7 @@ window.VENDORS = [
     "name": "Anthropic",
     "officialUrl": null,
     "libraryUrl": null,
-    "logoUrl": "assets/vendor-logos/anthropic.svg",
+    "logoUrl": "/assets/vendor-logos/anthropic.svg",
     "logoText": "Anthropic",
     "category": "Vendor Directory",
     "categories": [
@@ -746,7 +746,7 @@ window.VENDORS = [
     "name": "Apple",
     "officialUrl": null,
     "libraryUrl": null,
-    "logoUrl": "assets/vendor-logos/apple.svg",
+    "logoUrl": "/assets/vendor-logos/apple.svg",
     "logoText": "Apple",
     "category": "Vendor Directory",
     "categories": [
@@ -973,7 +973,7 @@ window.VENDORS = [
     "name": "Autodesk",
     "officialUrl": null,
     "libraryUrl": null,
-    "logoUrl": "assets/vendor-logos/autodesk.svg",
+    "logoUrl": "/assets/vendor-logos/autodesk.svg",
     "logoText": "Autodesk",
     "category": "Vendor Directory",
     "categories": [
@@ -1440,7 +1440,7 @@ window.VENDORS = [
     "name": "Cisco",
     "officialUrl": null,
     "libraryUrl": null,
-    "logoUrl": "assets/vendor-logos/cisco.svg",
+    "logoUrl": "/assets/vendor-logos/cisco.svg",
     "logoText": "Cisco",
     "category": "Vendor Directory",
     "categories": [
@@ -1472,7 +1472,7 @@ window.VENDORS = [
     "name": "Citrix",
     "officialUrl": null,
     "libraryUrl": null,
-    "logoUrl": "assets/vendor-logos/citrix.svg",
+    "logoUrl": "/assets/vendor-logos/citrix.svg",
     "logoText": "Citrix",
     "category": "Vendor Directory",
     "categories": [
@@ -1519,7 +1519,7 @@ window.VENDORS = [
     "name": "CloudBees",
     "officialUrl": null,
     "libraryUrl": null,
-    "logoUrl": "assets/vendor-logos/cloudbees.svg",
+    "logoUrl": "/assets/vendor-logos/cloudbees.svg",
     "logoText": "CloudBees",
     "category": "Vendor Directory",
     "categories": [
@@ -1536,7 +1536,7 @@ window.VENDORS = [
     "name": "Cloudera",
     "officialUrl": null,
     "libraryUrl": null,
-    "logoUrl": "assets/vendor-logos/cloudera.svg",
+    "logoUrl": "/assets/vendor-logos/cloudera.svg",
     "logoText": "Cloudera",
     "category": "Vendor Directory",
     "categories": [
@@ -1598,7 +1598,7 @@ window.VENDORS = [
     "name": "CompTIA",
     "officialUrl": null,
     "libraryUrl": null,
-    "logoUrl": "assets/vendor-logos/comptia.svg",
+    "logoUrl": "/assets/vendor-logos/comptia.svg",
     "logoText": "CompTIA",
     "category": "Vendor Directory",
     "categories": [
@@ -1825,7 +1825,7 @@ window.VENDORS = [
     "name": "Databricks",
     "officialUrl": null,
     "libraryUrl": null,
-    "logoUrl": "assets/vendor-logos/databricks.svg",
+    "logoUrl": "/assets/vendor-logos/databricks.svg",
     "logoText": "Databricks",
     "category": "Vendor Directory",
     "categories": [
@@ -1887,7 +1887,7 @@ window.VENDORS = [
     "name": "Docker",
     "officialUrl": null,
     "libraryUrl": null,
-    "logoUrl": "assets/vendor-logos/docker.svg",
+    "logoUrl": "/assets/vendor-logos/docker.svg",
     "logoText": "Docker",
     "category": "Vendor Directory",
     "categories": [
@@ -1919,7 +1919,7 @@ window.VENDORS = [
     "name": "Dynatrace",
     "officialUrl": null,
     "libraryUrl": null,
-    "logoUrl": "assets/vendor-logos/dynatrace.svg",
+    "logoUrl": "/assets/vendor-logos/dynatrace.svg",
     "logoText": "Dynatrace",
     "category": "Vendor Directory",
     "categories": [
@@ -2026,7 +2026,7 @@ window.VENDORS = [
     "name": "Esri",
     "officialUrl": null,
     "libraryUrl": null,
-    "logoUrl": "assets/vendor-logos/esri.svg",
+    "logoUrl": "/assets/vendor-logos/esri.svg",
     "logoText": "Esri",
     "category": "Vendor Directory",
     "categories": [
@@ -2058,7 +2058,7 @@ window.VENDORS = [
     "name": "F5",
     "officialUrl": null,
     "libraryUrl": null,
-    "logoUrl": "assets/vendor-logos/f5.svg",
+    "logoUrl": "/assets/vendor-logos/f5.svg",
     "logoText": "F5",
     "category": "Vendor Directory",
     "categories": [
@@ -2075,7 +2075,7 @@ window.VENDORS = [
     "name": "Facebook",
     "officialUrl": null,
     "libraryUrl": null,
-    "logoUrl": "assets/vendor-logos/facebook.svg",
+    "logoUrl": "/assets/vendor-logos/facebook.svg",
     "logoText": "Facebook",
     "category": "Vendor Directory",
     "categories": [
@@ -2182,7 +2182,7 @@ window.VENDORS = [
     "name": "Fortinet",
     "officialUrl": null,
     "libraryUrl": null,
-    "logoUrl": "assets/vendor-logos/fortinet.svg",
+    "logoUrl": "/assets/vendor-logos/fortinet.svg",
     "logoText": "Fortinet",
     "category": "Vendor Directory",
     "categories": [
@@ -2334,7 +2334,7 @@ window.VENDORS = [
     "name": "GitHub",
     "officialUrl": null,
     "libraryUrl": null,
-    "logoUrl": "assets/vendor-logos/github.svg",
+    "logoUrl": "/assets/vendor-logos/github.svg",
     "logoText": "GitHub",
     "category": "Vendor Directory",
     "categories": [
@@ -2351,7 +2351,7 @@ window.VENDORS = [
     "name": "Google",
     "officialUrl": null,
     "libraryUrl": null,
-    "logoUrl": "assets/vendor-logos/google.svg",
+    "logoUrl": "/assets/vendor-logos/google.svg",
     "logoText": "Google",
     "category": "Vendor Directory",
     "categories": [
@@ -2428,7 +2428,7 @@ window.VENDORS = [
     "name": "HashiCorp",
     "officialUrl": null,
     "libraryUrl": null,
-    "logoUrl": "assets/vendor-logos/hashicorp.svg",
+    "logoUrl": "/assets/vendor-logos/hashicorp.svg",
     "logoText": "HashiCorp",
     "category": "Vendor Directory",
     "categories": [
@@ -2505,7 +2505,7 @@ window.VENDORS = [
     "name": "Hitachi",
     "officialUrl": null,
     "libraryUrl": null,
-    "logoUrl": "assets/vendor-logos/hitachi.svg",
+    "logoUrl": "/assets/vendor-logos/hitachi.svg",
     "logoText": "Hitachi",
     "category": "Vendor Directory",
     "categories": [
@@ -2537,7 +2537,7 @@ window.VENDORS = [
     "name": "HP",
     "officialUrl": null,
     "libraryUrl": null,
-    "logoUrl": "assets/vendor-logos/hp.svg",
+    "logoUrl": "/assets/vendor-logos/hp.svg",
     "logoText": "HP",
     "category": "Vendor Directory",
     "categories": [
@@ -2584,7 +2584,7 @@ window.VENDORS = [
     "name": "Huawei",
     "officialUrl": null,
     "libraryUrl": null,
-    "logoUrl": "assets/vendor-logos/huawei.svg",
+    "logoUrl": "/assets/vendor-logos/huawei.svg",
     "logoText": "Huawei",
     "category": "Vendor Directory",
     "categories": [
@@ -3216,7 +3216,7 @@ window.VENDORS = [
     "name": "Lenovo",
     "officialUrl": null,
     "libraryUrl": null,
-    "logoUrl": "assets/vendor-logos/lenovo.svg",
+    "logoUrl": "/assets/vendor-logos/lenovo.svg",
     "logoText": "Lenovo",
     "category": "Vendor Directory",
     "categories": [
@@ -3248,7 +3248,7 @@ window.VENDORS = [
     "name": "Linux Foundation",
     "officialUrl": null,
     "libraryUrl": null,
-    "logoUrl": "assets/vendor-logos/linux-foundation.svg",
+    "logoUrl": "/assets/vendor-logos/linux-foundation.svg",
     "logoText": "Linux Foundation",
     "category": "Vendor Directory",
     "categories": [
@@ -3355,7 +3355,7 @@ window.VENDORS = [
     "name": "McAfee",
     "officialUrl": null,
     "libraryUrl": null,
-    "logoUrl": "assets/vendor-logos/mcafee.svg",
+    "logoUrl": "/assets/vendor-logos/mcafee.svg",
     "logoText": "McAfee",
     "category": "Vendor Directory",
     "categories": [
@@ -3417,7 +3417,7 @@ window.VENDORS = [
     "name": "MikroTik",
     "officialUrl": null,
     "libraryUrl": null,
-    "logoUrl": "assets/vendor-logos/mikrotik.svg",
+    "logoUrl": "/assets/vendor-logos/mikrotik.svg",
     "logoText": "MikroTik",
     "category": "Vendor Directory",
     "categories": [
@@ -3434,7 +3434,7 @@ window.VENDORS = [
     "name": "MongoDB",
     "officialUrl": null,
     "libraryUrl": null,
-    "logoUrl": "assets/vendor-logos/mongodb.svg",
+    "logoUrl": "/assets/vendor-logos/mongodb.svg",
     "logoText": "MongoDB",
     "category": "Vendor Directory",
     "categories": [
@@ -3691,7 +3691,7 @@ window.VENDORS = [
     "name": "Netapp",
     "officialUrl": null,
     "libraryUrl": null,
-    "logoUrl": "assets/vendor-logos/netapp.svg",
+    "logoUrl": "/assets/vendor-logos/netapp.svg",
     "logoText": "Netapp",
     "category": "Vendor Directory",
     "categories": [
@@ -3813,7 +3813,7 @@ window.VENDORS = [
     "name": "Nokia",
     "officialUrl": null,
     "libraryUrl": null,
-    "logoUrl": "assets/vendor-logos/nokia.svg",
+    "logoUrl": "/assets/vendor-logos/nokia.svg",
     "logoText": "Nokia",
     "category": "Vendor Directory",
     "categories": [
@@ -3875,7 +3875,7 @@ window.VENDORS = [
     "name": "Nutanix",
     "officialUrl": null,
     "libraryUrl": null,
-    "logoUrl": "assets/vendor-logos/nutanix.svg",
+    "logoUrl": "/assets/vendor-logos/nutanix.svg",
     "logoText": "Nutanix",
     "category": "Vendor Directory",
     "categories": [
@@ -3892,7 +3892,7 @@ window.VENDORS = [
     "name": "NVIDIA",
     "officialUrl": null,
     "libraryUrl": null,
-    "logoUrl": "assets/vendor-logos/nvidia.svg",
+    "logoUrl": "/assets/vendor-logos/nvidia.svg",
     "logoText": "NVIDIA",
     "category": "Vendor Directory",
     "categories": [
@@ -3969,7 +3969,7 @@ window.VENDORS = [
     "name": "Okta",
     "officialUrl": null,
     "libraryUrl": null,
-    "logoUrl": "assets/vendor-logos/okta.svg",
+    "logoUrl": "/assets/vendor-logos/okta.svg",
     "logoText": "Okta",
     "category": "Vendor Directory",
     "categories": [
@@ -4046,7 +4046,7 @@ window.VENDORS = [
     "name": "Paloalto Networks",
     "officialUrl": null,
     "libraryUrl": null,
-    "logoUrl": "assets/vendor-logos/paloalto-networks.svg",
+    "logoUrl": "/assets/vendor-logos/paloalto-networks.svg",
     "logoText": "Paloalto Networks",
     "category": "Vendor Directory",
     "categories": [
@@ -4363,7 +4363,7 @@ window.VENDORS = [
     "name": "Qlik",
     "officialUrl": null,
     "libraryUrl": null,
-    "logoUrl": "assets/vendor-logos/qlik.svg",
+    "logoUrl": "/assets/vendor-logos/qlik.svg",
     "logoText": "Qlik",
     "category": "Vendor Directory",
     "categories": [
@@ -4425,7 +4425,7 @@ window.VENDORS = [
     "name": "RedHat",
     "officialUrl": null,
     "libraryUrl": null,
-    "logoUrl": "assets/vendor-logos/redhat.svg",
+    "logoUrl": "/assets/vendor-logos/redhat.svg",
     "logoText": "RedHat",
     "category": "Vendor Directory",
     "categories": [
@@ -4517,7 +4517,7 @@ window.VENDORS = [
     "name": "Salesforce",
     "officialUrl": null,
     "libraryUrl": null,
-    "logoUrl": "assets/vendor-logos/salesforce.svg",
+    "logoUrl": "/assets/vendor-logos/salesforce.svg",
     "logoText": "Salesforce",
     "category": "Vendor Directory",
     "categories": [
@@ -4549,7 +4549,7 @@ window.VENDORS = [
     "name": "SAP",
     "officialUrl": null,
     "libraryUrl": null,
-    "logoUrl": "assets/vendor-logos/sap.svg",
+    "logoUrl": "/assets/vendor-logos/sap.svg",
     "logoText": "SAP",
     "category": "Vendor Directory",
     "categories": [
@@ -4851,7 +4851,7 @@ window.VENDORS = [
     "name": "Snowflake",
     "officialUrl": null,
     "libraryUrl": null,
-    "logoUrl": "assets/vendor-logos/snowflake.svg",
+    "logoUrl": "/assets/vendor-logos/snowflake.svg",
     "logoText": "Snowflake",
     "category": "Vendor Directory",
     "categories": [
@@ -4943,7 +4943,7 @@ window.VENDORS = [
     "name": "Splunk",
     "officialUrl": null,
     "libraryUrl": null,
-    "logoUrl": "assets/vendor-logos/splunk.svg",
+    "logoUrl": "/assets/vendor-logos/splunk.svg",
     "logoText": "Splunk",
     "category": "Vendor Directory",
     "categories": [
@@ -4975,7 +4975,7 @@ window.VENDORS = [
     "name": "SUSE",
     "officialUrl": null,
     "libraryUrl": null,
-    "logoUrl": "assets/vendor-logos/suse.svg",
+    "logoUrl": "/assets/vendor-logos/suse.svg",
     "logoText": "SUSE",
     "category": "Vendor Directory",
     "categories": [
@@ -5007,7 +5007,7 @@ window.VENDORS = [
     "name": "Symantec",
     "officialUrl": null,
     "libraryUrl": null,
-    "logoUrl": "assets/vendor-logos/symantec.svg",
+    "logoUrl": "/assets/vendor-logos/symantec.svg",
     "logoText": "Symantec",
     "category": "Vendor Directory",
     "categories": [
@@ -5039,7 +5039,7 @@ window.VENDORS = [
     "name": "Talend",
     "officialUrl": null,
     "libraryUrl": null,
-    "logoUrl": "assets/vendor-logos/talend.svg",
+    "logoUrl": "/assets/vendor-logos/talend.svg",
     "logoText": "Talend",
     "category": "Vendor Directory",
     "categories": [
@@ -5056,7 +5056,7 @@ window.VENDORS = [
     "name": "Teradata",
     "officialUrl": null,
     "libraryUrl": null,
-    "logoUrl": "assets/vendor-logos/teradata.svg",
+    "logoUrl": "/assets/vendor-logos/teradata.svg",
     "logoText": "Teradata",
     "category": "Vendor Directory",
     "categories": [
@@ -5163,7 +5163,7 @@ window.VENDORS = [
     "name": "Trend Micro",
     "officialUrl": null,
     "libraryUrl": null,
-    "logoUrl": "assets/vendor-logos/trend-micro.svg",
+    "logoUrl": "/assets/vendor-logos/trend-micro.svg",
     "logoText": "Trend Micro",
     "category": "Vendor Directory",
     "categories": [
@@ -5180,7 +5180,7 @@ window.VENDORS = [
     "name": "UiPath",
     "officialUrl": null,
     "libraryUrl": null,
-    "logoUrl": "assets/vendor-logos/uipath.svg",
+    "logoUrl": "/assets/vendor-logos/uipath.svg",
     "logoText": "UiPath",
     "category": "Vendor Directory",
     "categories": [
@@ -5242,7 +5242,7 @@ window.VENDORS = [
     "name": "Veeam",
     "officialUrl": null,
     "libraryUrl": null,
-    "logoUrl": "assets/vendor-logos/veeam.svg",
+    "logoUrl": "/assets/vendor-logos/veeam.svg",
     "logoText": "Veeam",
     "category": "Vendor Directory",
     "categories": [
@@ -5319,7 +5319,7 @@ window.VENDORS = [
     "name": "VMware",
     "officialUrl": null,
     "libraryUrl": null,
-    "logoUrl": "assets/vendor-logos/vmware.svg",
+    "logoUrl": "/assets/vendor-logos/vmware.svg",
     "logoText": "VMware",
     "category": "Vendor Directory",
     "categories": [
