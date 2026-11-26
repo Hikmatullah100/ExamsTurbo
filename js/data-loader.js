@@ -15,6 +15,7 @@ function rootAssetUrl(value, fallback) {
 function toVendor(row) {
   return {
     id: row.id,
+    slug: row.slug || row.id,
     name: row.name,
     sortName: row.sort_name || undefined,
     officialUrl: row.official_url,
@@ -59,9 +60,16 @@ function toExam(row) {
   const article = window.buildExamArticle
     ? window.buildExamArticle(vendorName)
     : null;
+  const slug =
+    window.ExamRoutes?.examSlug(
+      { slug: row.slug || row.id, id: row.id, vendorId: row.vendor_id },
+      vendor,
+    ) ||
+    row.slug ||
+    row.id;
   return {
     id: row.id,
-    slug: row.slug || row.id,
+    slug,
     vendorId: row.vendor_id,
     vendor: vendorName,
     examCode: row.exam_code || "",

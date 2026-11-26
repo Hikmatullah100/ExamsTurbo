@@ -36,6 +36,8 @@
       .replace(/[^a-z0-9-]+/g, "-")
       .replace(/-+/g, "-")
       .replace(/^-|-$/g, "");
+  const examPageRoute = (exam) =>
+    window.ExamRoutes?.pagePath(exam, vendors) || "";
   const certificationCategories = window.CERTIFICATION_CATEGORIES || [];
   const initialSearch = new URLSearchParams(window.location.search).get("q");
   if (initialSearch) search.value = initialSearch;
@@ -327,11 +329,9 @@
     if (!suggestion) return;
     closeSearchSuggestions();
     if (suggestion.kind === "exam") {
-      if (suggestion.vendor)
-        openVendor(
-          suggestion.vendor,
-          suggestion.exam.id || suggestion.exam.slug || "",
-        );
+      const route = examPageRoute(suggestion.exam);
+      if (route) window.location.assign(route);
+      else if (suggestion.vendor) openVendor(suggestion.vendor);
       return;
     }
     if (suggestion.vendor) openVendor(suggestion.vendor);
@@ -602,8 +602,7 @@
               const price = hasPrice
                 ? `$${Number(exam.price).toFixed(2)}`
                 : "";
-              const codeSlug = examCodeSlug(exam);
-              const detailUrl = codeSlug ? `/exams/${codeSlug}` : "#";
+              const detailUrl = examPageRoute(exam) || "#";
               return `
           <li>
             <a class="vendor-exam-row" href="${escapeHTML(detailUrl)}" data-exam-id="${escapeHTML(exam.id)}" aria-label="View details for ${escapeHTML(exam.examTitle)}">
@@ -653,27 +652,6 @@
       `<p class="muted-copy">No sample products have been added for this vendor yet.</p>`;
     vendorModal.show();
   }
-  vendorExamLibrary.addEventListener("click", (event) => {
-    const card = event.target.closest("[data-exam-id]");
-    if (!card) return;
-    event.preventDefault();
-    const exam = activeVendorLibraryExams.find(
-      (item) => item.id === card.dataset.examId,
-    );
-    if (exam) {
-      const codeSlug = examCodeSlug(exam);
-      if (!codeSlug) {
-        showVendorExamDetail(exam);
-        return;
-      }
-      window.history.pushState(
-        { examCode: codeSlug, vendorId: exam.vendorId },
-        "",
-        `/exams/${codeSlug}`,
-      );
-      openExamRoute(codeSlug);
-    }
-  });
   document
     .getElementById("backToExamLibrary")
     .addEventListener("click", () => {

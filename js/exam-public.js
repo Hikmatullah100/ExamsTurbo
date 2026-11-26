@@ -547,7 +547,9 @@
 
   function addDemoJump(target) {
     removeDemoJump();
-    const panel = document.querySelector("#vendorModal .vendor-exam-purchase");
+    const panel =
+      document.querySelector("#vendorModal .vendor-exam-purchase") ||
+      document.getElementById("examPurchasePanel");
     if (!panel || !target) return;
     const btn = h("button", { type: "button", id: "demoJumpBtn", class: "btn btn-outline-light w-100" }, [
       h("i", { class: "fa-solid fa-circle-question me-2", "aria-hidden": "true" }),

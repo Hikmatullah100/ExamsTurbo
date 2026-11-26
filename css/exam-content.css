@@ -104,7 +104,8 @@
    Article ka matn parhne layak ho (size, wazan, line ka faasla)
    Do ID lagayi hain taake site ki baqi CSS ise dabaa na sake
    ========================================================= */
-#vendorModal #vendorExamArticle {
+#vendorModal #vendorExamArticle,
+.exam-page #vendorExamArticle {
   font-size: 17px;
   line-height: 1.8;
 }
@@ -112,20 +113,31 @@
 #vendorModal #vendorExamArticle li,
 #vendorModal #vendorExamArticle td,
 #vendorModal #vendorExamArticle th,
-#vendorModal #vendorExamArticle blockquote {
+#vendorModal #vendorExamArticle blockquote,
+.exam-page #vendorExamArticle p,
+.exam-page #vendorExamArticle li,
+.exam-page #vendorExamArticle td,
+.exam-page #vendorExamArticle th,
+.exam-page #vendorExamArticle blockquote {
   font-size: 17px;
   font-weight: 400;
   line-height: 1.8;
   letter-spacing: normal;
   color: #dbe6f2;
 }
-#vendorModal #vendorExamArticle th { font-weight: 700; }
+#vendorModal #vendorExamArticle th,
+.exam-page #vendorExamArticle th { font-weight: 700; }
 #vendorModal #vendorExamArticle strong,
-#vendorModal #vendorExamArticle b { font-weight: 700; color: #fff; }
+#vendorModal #vendorExamArticle b,
+.exam-page #vendorExamArticle strong,
+.exam-page #vendorExamArticle b { font-weight: 700; color: #fff; }
 @media (max-width: 575px) {
   #vendorModal #vendorExamArticle,
+  .exam-page #vendorExamArticle,
   #vendorModal #vendorExamArticle p,
-  #vendorModal #vendorExamArticle li { font-size: 16px; }
+  #vendorModal #vendorExamArticle li,
+  .exam-page #vendorExamArticle p,
+  .exam-page #vendorExamArticle li { font-size: 16px; }
 }
 
 /* Review form helper text + labels: readable on dark background */
@@ -148,7 +160,7 @@
 }
 
 /* Demo Questions jump button: target ko thori der highlight */
-#vendorModal .exam-jump-highlight { animation: exam-jump-pulse 1.6s ease-out; border-radius: 14px; }
+.exam-jump-highlight { animation: exam-jump-pulse 1.6s ease-out; border-radius: 14px; }
 @keyframes exam-jump-pulse {
   0% { box-shadow: 0 0 0 0 rgba(255, 154, 46, 0.65); }
   100% { box-shadow: 0 0 0 18px rgba(255, 154, 46, 0); }

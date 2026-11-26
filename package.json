@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "build:exam-pages": "node scripts/generate-exam-pages.mjs"
+  },
   "dependencies": {
     "@supabase/supabase-js": "^2.119.2"
   }

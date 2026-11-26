@@ -54,15 +54,57 @@ The homepage is served from `/`, and the Blog, Vendors, Community, About, and
 Contact pages are served from `/blog/`, `/vendors/`, `/community/`, `/about/`,
 and `/contact/`. The corresponding root-level `.html` pages remain available
 for backward compatibility.
-Exam details use `/exams/{exam-code}`; `404.html` restores these static routes
-through the existing Vendor Library so direct visits and refreshes work on
-GitHub Pages.
+Published exam detail pages are generated at
+`/vendors/{vendor-slug}/{exam-slug}/`. The build also creates `sitemap.xml` and
+`exam-redirects.json`; `404.html` uses the redirect map to preserve existing
+`/exams/{exam-code}` links. The original Vendor Library modal remains available
+at `/vendors/`, and its exam links now open the separate exam pages.
+
+## Building and deploying exam pages
+
+Install dependencies with `npm ci`, then run:
+
+```sh
+npm run build:exam-pages
+```
+
+The generator requires `SUPABASE_ANON_KEY` in the environment. It must be the
+Supabase anon/public key, never a service-role key. It reads published vendors,
+exams, and exam content and fails if Supabase data or URL validation fails.
+Generated pages use static metadata and content, while the existing public
+exam script loads reviews and interactive study sections.
+
+The GitHub Actions workflow builds the pages before deploying the repository
+root as the Pages artifact. It includes the root `CNAME` file so the
+`examsturbo.com` custom domain is retained. In GitHub repository settings,
+select **Settings → Pages → Build and deployment → Source → GitHub Actions**,
+and add **Settings → Secrets and variables → Actions → Variables →
+New repository variable** named `SUPABASE_ANON_KEY` with the project's
+anon/public key as its value. Do not add a service-role key or payment secret
+to repository variables or the workflow.
 
 ## Vendor-specific exam libraries
 
-`js/exams.js` stores the two user-provided AACE International exam records and exposes them as `window.EXAMS`. Each exam has a `vendorId`; `js/main.js` filters by the open vendor ID and renders matching exam cards in that vendor's library modal. Selecting a card updates the address to `/exams/{exam-code}` and opens its cover, exam details, benefits, purchase panel, and shared article in the same modal; it does not load a separate detail page. Direct visits and refreshes are restored through `404.html`. Records with the same exam code share one URL and resolve to the first matching record in the loaded data. The article content is editable in the AACE detail section in `vendors/index.html`.
+`js/exams.js` stores the static fallback exam records and exposes them as
+`window.EXAMS`. Supabase supplies the published exam and vendor data used by
+the generator and the live directory. The vendor modal remains on `/vendors/`;
+selecting an exam now navigates to its generated full page. Its breadcrumb
+links the vendor name to the existing Vendors page filtered to that vendor.
+Legacy `/exams/{exam-code}` paths are redirected using `exam-redirects.json`.
+When exam codes collide, the legacy redirect retains the first exam in the
+existing name-sorted order. Shared default article text is in
+`js/exam-article.js`.
 
-The detail view's Add to Cart button uses the existing LocalStorage cart. Buy Now and contribution controls display clear integration messages; checkout and article submission are not connected, and no payment or order is created. `exams.html` and `exam.html` are compatibility redirects to the AACE International vendor view; an exam query opens that exam's inline detail view. There is no separate Exam Library navigation item. The counts, prices, and descriptions in the retained exam records are user-provided and not independently verified. Do not treat them as official AACE information.
+The full exam page's Add to Cart button uses the existing LocalStorage cart;
+Buy Now adds the exam and opens the cart drawer. `js/cart.js` contains the
+PayPal checkout integration, but its public PayPal client ID is currently
+unset, so the checkout reports that online payment is unavailable until that
+existing configuration is supplied. No payment secret belongs in this
+repository or the Pages workflow. The modal's current contribution and Buy Now
+messages remain unchanged. `exams.html` and `exam.html` remain compatibility
+redirects. The counts, prices, and descriptions in the retained static exam
+records are user-provided and not independently verified; do not treat them as
+official vendor information.
 
 ## Vendor dataset
 

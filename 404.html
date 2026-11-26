@@ -9,19 +9,43 @@
   <link rel="apple-touch-icon" href="/assets/images/exams-turbo-icon.png" />
 </head>
   <body>
-    <p>This exam could not be found.</p>
+  <p id="notFoundMessage">This page could not be found.</p>
     <p><a href="/vendors/">Browse the vendor library</a></p>
     <script>
+    (async () => {
       const match = window.location.pathname.match(
         /^\/exams\/([a-z0-9-]+)\/?$/i,
       );
-      if (match) {
-        sessionStorage.setItem(
-          "examTurboPendingPath",
-          `/exams/${match[1].toLowerCase()}`,
-        );
+      if (!match) return;
+
+      const oldPath = `/exams/${match[1].toLowerCase()}`;
+      try {
+        const response = await fetch("/exam-redirects.json", {
+          cache: "no-store",
+        });
+        if (!response.ok) {
+          throw new Error(
+            `Redirect map request failed (${response.status}).`,
+          );
+        }
+        const redirects = await response.json();
+        const destination = redirects[oldPath];
+        if (
+          typeof destination === "string" &&
+          /^\/vendors\/[a-z0-9-]+\/[a-z0-9-]+\/?$/i.test(destination)
+        ) {
+          window.location.replace(destination);
+          return;
+        }
+
+        sessionStorage.setItem("examTurboPendingPath", oldPath);
         window.location.replace("/vendors/");
+      } catch (error) {
+        console.error("Could not resolve the legacy exam URL:", error);
+        document.getElementById("notFoundMessage").textContent =
+          "This exam link could not be redirected right now. Please browse the vendor library.";
       }
+    })();
     </script>
   </body>
 </html>

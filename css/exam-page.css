@@ -1,0 +1,70 @@
+.exam-page-content {
+  padding-top: 24px;
+  padding-bottom: 56px;
+}
+
+.exam-breadcrumb {
+  margin-bottom: 22px;
+}
+
+.exam-breadcrumb ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  color: var(--secondary-text);
+  font-size: 14px;
+  list-style: none;
+}
+
+.exam-breadcrumb li + li::before {
+  padding-right: 8px;
+  color: var(--orange-light);
+  content: ">";
+}
+
+.exam-breadcrumb a {
+  color: var(--secondary-text);
+  text-decoration: none;
+}
+
+.exam-breadcrumb a:hover,
+.exam-breadcrumb [aria-current="page"] {
+  color: var(--orange-light);
+}
+
+.exam-page .vendor-exam-information h1 {
+  margin: 0 0 14px;
+  color: var(--white);
+  font-size: clamp(22px, 3vw, 34px);
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.exam-page .vendor-exam-purchase h2,
+.exam-page-subheading {
+  color: var(--white);
+  font-size: 17px;
+  font-weight: 800;
+  margin: 8px 0;
+}
+
+.exam-page-subheading {
+  color: var(--orange-light);
+  font-size: 15px;
+  margin-top: 16px;
+}
+
+.exam-page .vendor-exam-description {
+  color: var(--secondary-text);
+  line-height: 1.75;
+}
+
+.exam-page .vendor-exam-purchase {
+  top: 96px;
+}
+
+.exam-page .vendor-exam-purchase > .btn + .btn {
+  margin-top: 8px;
+}
