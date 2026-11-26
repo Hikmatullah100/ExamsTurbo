@@ -54,9 +54,7 @@ async function loadVendors() {
 function toExam(row) {
   const vendor = (window.VENDORS || []).find((v) => v.id === row.vendor_id);
   const vendorName = vendor?.name || row.vendor_id;
-  const defaultCover = /ccp/i.test(row.exam_code || row.name || "")
-    ? "/assets/exam-covers/aace-ccp.svg"
-    : "/assets/exam-covers/aace-psp.jpeg";
+  const defaultCover = "/assets/exam-covers/aace-psp.jpeg";
   // buildExamArticle js/exams.js me banta hai (wo is file se pehle load hoti hai)
   const article = window.buildExamArticle
     ? window.buildExamArticle(vendorName)

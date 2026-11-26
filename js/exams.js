@@ -91,10 +91,7 @@
     },
   ].map((exam) => ({
     ...exam,
-    coverImage:
-      exam.examCode === "CCP"
-        ? "/assets/exam-covers/aace-ccp.svg"
-        : DEFAULT_EXAM_COVER,
+    coverImage: DEFAULT_EXAM_COVER,
   }));
 
   window.EXAMS = EXAMS;
