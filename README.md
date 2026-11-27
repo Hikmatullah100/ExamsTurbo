@@ -55,7 +55,10 @@ Contact pages are served from `/blog/`, `/vendors/`, `/community/`, `/about/`,
 and `/contact/`. The corresponding root-level `.html` pages remain available
 for backward compatibility.
 Published exam detail pages are generated at
-`/vendors/{vendor-slug}/{exam-slug}/`. The build also creates `sitemap.xml` and
+`/vendors/{vendor-slug}/{exam-code-slug}/` (with a stable ID suffix if exam
+codes collide within one vendor). The same shared route helper drives the
+generated folder, site links, canonical/Open Graph URLs, sitemap, and redirects.
+The build also creates `sitemap.xml` and
 `exam-redirects.json`; `404.html` uses the redirect map to preserve existing
 `/exams/{exam-code}` links. The original Vendor Library modal remains available
 at `/vendors/`, and its exam links now open the separate exam pages.
@@ -90,10 +93,10 @@ to repository variables or the workflow.
 the generator and the live directory. The vendor modal remains on `/vendors/`;
 selecting an exam now navigates to its generated full page. Its breadcrumb
 links the vendor name to the existing Vendors page filtered to that vendor.
-Legacy `/exams/{exam-code}` paths are redirected using `exam-redirects.json`.
-When exam codes collide, the legacy redirect retains the first exam in the
-existing name-sorted order. Shared default article text is in
-`js/exam-article.js`.
+Legacy `/exams/{exam-code}` paths and prior vendor-prefixed exam paths are
+redirected using `exam-redirects.json`. When exam codes collide, the legacy
+`/exams/{exam-code}` redirect retains the first exam in the existing
+name-sorted order. Shared default article text is in `js/exam-article.js`.
 
 The full exam page's Add to Cart button uses the existing LocalStorage cart;
 Buy Now adds the exam and opens the cart drawer. `js/cart.js` contains the

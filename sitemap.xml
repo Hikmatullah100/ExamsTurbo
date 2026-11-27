@@ -27,17 +27,42 @@
   <url><loc>https://examsturbo.com/vendors/acdis/ccds-o/</loc></url>
   <url><loc>https://examsturbo.com/vendors/acdis/ccds/</loc></url>
   <url><loc>https://examsturbo.com/vendors/ace-fitness/ace-personal-trainer/</loc></url>
+  <url><loc>https://examsturbo.com/vendors/acfcs/cfcs/</loc></url>
+  <url><loc>https://examsturbo.com/vendors/uipath/aaav1/</loc></url>
+  <url><loc>https://examsturbo.com/vendors/uipath/aapv1/</loc></url>
+  <url><loc>https://examsturbo.com/vendors/uipath/abaav1/</loc></url>
+  <url><loc>https://examsturbo.com/vendors/uipath/abav1/</loc></url>
+  <url><loc>https://examsturbo.com/vendors/uipath/adav1/</loc></url>
+  <url><loc>https://examsturbo.com/vendors/uipath/adpv1/</loc></url>
+  <url><loc>https://examsturbo.com/vendors/uipath/ardv1/</loc></url>
+  <url><loc>https://examsturbo.com/vendors/uipath/asapv1/</loc></url>
+  <url><loc>https://examsturbo.com/vendors/uipath/saiav1/</loc></url>
+  <url><loc>https://examsturbo.com/vendors/uipath/saiv1/</loc></url>
+  <url><loc>https://examsturbo.com/vendors/uipath/taepv1/</loc></url>
+  <url><loc>https://examsturbo.com/vendors/uipath/tcapv1/</loc></url>
+  <url><loc>https://examsturbo.com/vendors/usaii/caic/</loc></url>
+  <url><loc>https://examsturbo.com/vendors/usaii/uipath-iepasv1/</loc></url>
+  <url><loc>https://examsturbo.com/vendors/usgbc/leed-ap-bd-c/</loc></url>
+  <url><loc>https://examsturbo.com/vendors/usgbc/leed-ap-homes/</loc></url>
+  <url><loc>https://examsturbo.com/vendors/usgbc/leed-ap-id-c/</loc></url>
+  <url><loc>https://examsturbo.com/vendors/usgbc/leed-ap-nd/</loc></url>
+  <url><loc>https://examsturbo.com/vendors/usgbc/leed-ap-o-m/</loc></url>
+  <url><loc>https://examsturbo.com/vendors/usgbc/leed-green-associate/</loc></url>
+  <url><loc>https://examsturbo.com/vendors/vce/210-015/</loc></url>
+  <url><loc>https://examsturbo.com/vendors/veritas/vcs-285/</loc></url>
+  <url><loc>https://examsturbo.com/vendors/versa-networks/vnx100/</loc></url>
+  <url><loc>https://examsturbo.com/vendors/versa-networks/vnx301/</loc></url>
   <url><loc>https://examsturbo.com/vendors/virginia-insurance/az-insurance-producer-life/</loc></url>
   <url><loc>https://examsturbo.com/vendors/virginia-insurance/insnv-health02/</loc></url>
   <url><loc>https://examsturbo.com/vendors/virginia-insurance/life-producer/</loc></url>
+  <url><loc>https://examsturbo.com/vendors/virginia-insurance/nj-life-producer/</loc></url>
   <url><loc>https://examsturbo.com/vendors/virginia-insurance/ny-independent-general-adjuster/</loc></url>
   <url><loc>https://examsturbo.com/vendors/virginia-insurance/oh-life-agent-series-11-44/</loc></url>
   <url><loc>https://examsturbo.com/vendors/virginia-insurance/oklahoma-life-accident-and-health-or-sickness-producer-exam/</loc></url>
   <url><loc>https://examsturbo.com/vendors/virginia-insurance/pa-life-accident-and-health/</loc></url>
   <url><loc>https://examsturbo.com/vendors/virginia-insurance/pa-title-insurance-agent/</loc></url>
   <url><loc>https://examsturbo.com/vendors/virginia-insurance/virginia-life-annuities-and-health-insurance/</loc></url>
-  <url><loc>https://examsturbo.com/vendors/vlocity/vlocity-order-management-developer/</loc></url>
-  <url><loc>https://examsturbo.com/vendors/vlocity/vlocity-platform-developer/</loc></url>
+  <url><loc>https://examsturbo.com/vendors/vlocity/order-management-developer/</loc></url>
   <url><loc>https://examsturbo.com/vendors/vmware/1v0-41-20/</loc></url>
   <url><loc>https://examsturbo.com/vendors/vmware/1v0-61-21/</loc></url>
   <url><loc>https://examsturbo.com/vendors/vmware/1v0-71-21/</loc></url>
@@ -84,7 +109,7 @@
   <url><loc>https://examsturbo.com/vendors/vmware/6v0-21-25/</loc></url>
   <url><loc>https://examsturbo.com/vendors/vmware/6v0-22-25/</loc></url>
   <url><loc>https://examsturbo.com/vendors/watchguard/essentials/</loc></url>
-  <url><loc>https://examsturbo.com/vendors/well/well-ap/</loc></url>
+  <url><loc>https://examsturbo.com/vendors/well/ap/</loc></url>
   <url><loc>https://examsturbo.com/vendors/wgu/2v0-31-21/</loc></url>
   <url><loc>https://examsturbo.com/vendors/wgu/2v0-31-24/</loc></url>
   <url><loc>https://examsturbo.com/vendors/wgu/3v0-22-21/</loc></url>
@@ -112,21 +137,21 @@
   <url><loc>https://examsturbo.com/vendors/wgu/secure-software-design/</loc></url>
   <url><loc>https://examsturbo.com/vendors/wgu/web-development-applications/</loc></url>
   <url><loc>https://examsturbo.com/vendors/wgu/web-development-foundation/</loc></url>
+  <url><loc>https://examsturbo.com/vendors/workday/adaptive-planning/</loc></url>
   <url><loc>https://examsturbo.com/vendors/workday/data-management-foundations/</loc></url>
   <url><loc>https://examsturbo.com/vendors/workday/ethics-in-technology/</loc></url>
-  <url><loc>https://examsturbo.com/vendors/workday/workday-adaptive-planning/</loc></url>
-  <url><loc>https://examsturbo.com/vendors/workday/workday-prism-analytics/</loc></url>
-  <url><loc>https://examsturbo.com/vendors/workday/workday-pro-absence/</loc></url>
-  <url><loc>https://examsturbo.com/vendors/workday/workday-pro-benefits/</loc></url>
-  <url><loc>https://examsturbo.com/vendors/workday/workday-pro-compensation/</loc></url>
-  <url><loc>https://examsturbo.com/vendors/workday/workday-pro-hcm-core/</loc></url>
-  <url><loc>https://examsturbo.com/vendors/workday/workday-pro-hcm-reporting/</loc></url>
-  <url><loc>https://examsturbo.com/vendors/workday/workday-pro-integration/</loc></url>
-  <url><loc>https://examsturbo.com/vendors/workday/workday-pro-recruiting/</loc></url>
-  <url><loc>https://examsturbo.com/vendors/workday/workday-pro-talent-and-performance/</loc></url>
-  <url><loc>https://examsturbo.com/vendors/workday/workday-pro-time-tracking/</loc></url>
-  <url><loc>https://examsturbo.com/vendors/workday/workday-procure-to-pay/</loc></url>
-  <url><loc>https://examsturbo.com/vendors/workday/workday-record-to-report/</loc></url>
+  <url><loc>https://examsturbo.com/vendors/workday/prism-analytics/</loc></url>
+  <url><loc>https://examsturbo.com/vendors/workday/pro-absence/</loc></url>
+  <url><loc>https://examsturbo.com/vendors/workday/pro-benefits/</loc></url>
+  <url><loc>https://examsturbo.com/vendors/workday/pro-compensation/</loc></url>
+  <url><loc>https://examsturbo.com/vendors/workday/pro-hcm-core/</loc></url>
+  <url><loc>https://examsturbo.com/vendors/workday/pro-hcm-reporting/</loc></url>
+  <url><loc>https://examsturbo.com/vendors/workday/pro-integration/</loc></url>
+  <url><loc>https://examsturbo.com/vendors/workday/pro-recruiting/</loc></url>
+  <url><loc>https://examsturbo.com/vendors/workday/pro-talent-and-performance/</loc></url>
+  <url><loc>https://examsturbo.com/vendors/workday/pro-time-tracking/</loc></url>
+  <url><loc>https://examsturbo.com/vendors/workday/procure-to-pay/</loc></url>
+  <url><loc>https://examsturbo.com/vendors/workday/record-to-report/</loc></url>
   <url><loc>https://examsturbo.com/vendors/worldatwork/b1/</loc></url>
   <url><loc>https://examsturbo.com/vendors/worldatwork/c17/</loc></url>
   <url><loc>https://examsturbo.com/vendors/worldatwork/cecp/</loc></url>

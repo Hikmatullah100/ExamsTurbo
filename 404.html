@@ -13,12 +13,17 @@
     <p><a href="/vendors/">Browse the vendor library</a></p>
     <script>
     (async () => {
-      const match = window.location.pathname.match(
+      const examMatch = window.location.pathname.match(
         /^\/exams\/([a-z0-9-]+)\/?$/i,
       );
-      if (!match) return;
+      const previousPageMatch = window.location.pathname.match(
+        /^\/vendors\/[a-z0-9-]+\/[a-z0-9-]+\/?$/i,
+      );
+      if (!examMatch && !previousPageMatch) return;
 
-      const oldPath = `/exams/${match[1].toLowerCase()}`;
+      const oldPath = examMatch
+        ? `/exams/${examMatch[1].toLowerCase()}`
+        : window.location.pathname.replace(/\/+$/, "");
       try {
         const response = await fetch("/exam-redirects.json", {
           cache: "no-store",
@@ -38,8 +43,10 @@
           return;
         }
 
-        sessionStorage.setItem("examTurboPendingPath", oldPath);
-        window.location.replace("/vendors/");
+        if (examMatch) {
+          sessionStorage.setItem("examTurboPendingPath", oldPath);
+          window.location.replace("/vendors/");
+        }
       } catch (error) {
         console.error("Could not resolve the legacy exam URL:", error);
         document.getElementById("notFoundMessage").textContent =

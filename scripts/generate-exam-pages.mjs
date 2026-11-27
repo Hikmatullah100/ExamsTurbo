@@ -1,4 +1,5 @@
 import { createRequire } from "node:module";
+import fsSync from "node:fs";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -8,6 +9,26 @@ const require = createRequire(import.meta.url);
 const buildExamArticle = require("../js/exam-article.js");
 const examRoutes = require("../js/exam-routes.js");
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+
+// Local convenience: read SUPABASE_URL / SUPABASE_ANON_KEY from a ".env.local"
+// file in the project root (KEY=value per line). Real environment variables
+// (for example the GitHub Actions ones) always win. Only public keys belong here.
+function loadLocalEnv() {
+  let raw;
+  try {
+    raw = fsSync.readFileSync(path.join(root, ".env.local"), "utf8");
+  } catch {
+    return;
+  }
+  for (const line of raw.split(/\r?\n/)) {
+    const match = line.match(/^\s*([A-Z0-9_]+)\s*=\s*(.*?)\s*$/);
+    if (!match || match[1].startsWith("#")) continue;
+    const value = match[2].replace(/^(['"])(.*)\1$/, "$2");
+    if (value && !process.env[match[1]]) process.env[match[1]] = value;
+  }
+}
+loadLocalEnv();
+
 const baseUrl = "https://examsturbo.com";
 const supabaseUrl =
   process.env.SUPABASE_URL || "https://zfmjphrmmomqetwybnvf.supabase.co";
@@ -27,6 +48,11 @@ function assertPublicKey(value) {
   if (!value) {
     throw new Error(
       "SUPABASE_ANON_KEY is required. Set it to the Supabase anon/public key.",
+    );
+  }
+  if (/^(APNI|YOUR|PASTE|YAHAN|REPLACE)/i.test(value) || /[^\x21-\x7e]/.test(value)) {
+    throw new Error(
+      "SUPABASE_ANON_KEY still contains placeholder text. Paste the real anon/public key (it starts with eyJ or sb_publishable_).",
     );
   }
   if (value.startsWith("sb_secret_")) {
@@ -125,7 +151,10 @@ async function fetchAll(
 function normalizeVendor(row) {
   const id = String(row.id || "").trim();
   const name = String(row.name || "").trim();
-  const slug = slugify(row.slug || id || name);
+  const slug = examRoutes.vendorSlug({
+    id,
+    slug: row.slug || id || name,
+  });
   if (!id || !name || !slug) {
     throw new Error(`Vendor row is missing a usable id, name, or slug: ${id}`);
   }
@@ -141,11 +170,7 @@ function normalizeExam(row, vendorsById) {
       `Published exam ${id || "(missing id)"} has no matching vendor (${vendorId || "missing vendor_id"}).`,
     );
   }
-  const slug = examRoutes.examSlug(
-    { slug: row.slug || id, id, vendorId },
-    vendor,
-  );
-  if (!slug) throw new Error(`Exam ${id} has no usable slug.`);
+  const sourceSlug = String(row.slug || id);
   const examCode = String(row.exam_code || "").trim();
   const price = Number(row.price);
   if (!Number.isFinite(price) || price < 0) {
@@ -154,7 +179,8 @@ function normalizeExam(row, vendorsById) {
   const article = buildExamArticle(vendor.name);
   return {
     id,
-    slug,
+    slug: sourceSlug,
+    sourceSlug,
     vendorId,
     vendorSlug: vendor.slug,
     vendor: vendor.name,
@@ -203,7 +229,10 @@ function pageHtml(exam, content) {
     String(content?.meta_description || "").trim() ||
     exam.detailDescription ||
     `Independent ${exam.vendor} ${exam.examCode} exam preparation resources and digital study materials on ExamsTurbo.`;
-  const canonical = `${baseUrl}/vendors/${exam.vendorSlug}/${exam.slug}/`;
+  const examPath = examRoutes.pagePath(exam, [
+    { id: exam.vendorId, slug: exam.vendorSlug },
+  ]);
+  const canonical = `${baseUrl}${examPath}`;
   const cover = absoluteUrl(exam.coverImage);
   const price = `$${exam.price.toFixed(2)}`;
   const breadcrumb = [
@@ -376,10 +405,6 @@ function pageHtml(exam, content) {
 </html>`;
 }
 
-function redirectKey(exam) {
-  return slugify(exam.examCode);
-}
-
 async function readPreviousManifest() {
   try {
     const raw = await fs.readFile(path.join(root, manifestName), "utf8");
@@ -455,16 +480,41 @@ async function main() {
     vendorsById.set(vendor.id, vendor);
   }
 
-  const exams = examRows.map((row) => normalizeExam(row, vendorsById));
+  const exams = examRoutes.assignExamSlugs(
+    examRows.map((row) => normalizeExam(row, vendorsById)),
+    vendors,
+  );
   const examPaths = new Set();
+  const canonicalExamPaths = new Set(
+    exams.map((exam) => examRoutes.pagePath(exam, vendors)),
+  );
   const redirects = {};
+  const redirectConflicts = [];
   const contentByExamId = new Map(
     contentRows.map((row) => [String(row.exam_id), row]),
   );
   const outputs = [];
+  const addRedirect = (source, destination, allowExisting = false) => {
+    const key = source.replace(/\/+$/, "");
+    if (
+      !key ||
+      key === destination.replace(/\/+$/, "") ||
+      canonicalExamPaths.has(`${key}/`)
+    ) {
+      return;
+    }
+    if (redirects[key] && redirects[key] !== destination) {
+      if (allowExisting) return;
+      redirectConflicts.push(`${key} -> ${redirects[key]} / ${destination}`);
+      return;
+    }
+    redirects[key] = destination;
+  };
   for (const exam of exams) {
     if (!exam.examTitle) throw new Error(`Published exam ${exam.id} has no name.`);
-    const relativePath = `vendors/${exam.vendorSlug}/${exam.slug}/index.html`;
+    const examPath = examRoutes.pagePath(exam, vendors);
+    if (!examPath) throw new Error(`Exam ${exam.id} has no valid page URL.`);
+    const relativePath = `${examPath.slice(1)}index.html`;
     if (examPaths.has(relativePath)) {
       throw new Error(`More than one published exam resolves to ${relativePath}.`);
     }
@@ -485,13 +535,24 @@ async function main() {
       relativePath,
       html: pageHtml(exam, content),
     });
-    const pathname = `/${exam.vendorSlug}/${exam.slug}/`;
-    sitemapPaths.add(`/vendors${pathname}`);
-
-    const legacySlug = redirectKey(exam);
-    if (legacySlug && !redirects[`/exams/${legacySlug}`]) {
-      redirects[`/exams/${legacySlug}`] = `/vendors/${exam.vendorSlug}/${exam.slug}/`;
+    sitemapPaths.add(examPath);
+    for (const legacySlug of examRoutes.legacySlugs(exam, {
+      id: exam.vendorId,
+      slug: exam.vendorSlug,
+    })) {
+      addRedirect(`/vendors/${exam.vendorSlug}/${legacySlug}/`, examPath);
     }
+    for (const legacySlug of examRoutes.legacySlugs(exam, {
+      id: exam.vendorId,
+      slug: exam.vendorSlug,
+    })) {
+      addRedirect(`/exams/${legacySlug}`, examPath, true);
+    }
+  }
+  if (redirectConflicts.length) {
+    throw new Error(
+      `Legacy exam URL conflicts:\n${redirectConflicts.map((item) => `- ${item}`).join("\n")}`,
+    );
   }
   if (!Object.keys(redirects).length) {
     throw new Error("No published exams have an exam code for legacy redirects.");
@@ -523,8 +584,75 @@ async function main() {
       "utf8",
     ),
   ]);
+  const generatedFolders = new Set(
+    outputs.map((output) => output.relativePath.replace(/index\.html$/, "")),
+  );
+  const mismatches = [];
+  const checkExamUrl = async (url, source) => {
+    const match = String(url).match(/^\/vendors\/([a-z0-9-]+\/[a-z0-9-]+)\/?$/);
+    if (!match) {
+      mismatches.push(`${source}: invalid exam URL ${url}`);
+      return;
+    }
+    const folder = `vendors/${match[1]}/`;
+    if (!generatedFolders.has(folder)) {
+      mismatches.push(`${source}: ${url} has no generated folder`);
+    }
+    const pagePath = path.join(root, folder, "index.html");
+    try {
+      await fs.access(pagePath);
+    } catch {
+      mismatches.push(`${source}: ${url} has no generated index.html`);
+    }
+  };
+  const vendorLibraryPaths = exams.map((exam) =>
+    examRoutes.pagePath(exam, vendors),
+  );
+  for (let index = 0; index < vendorLibraryPaths.length; index += 1) {
+    await checkExamUrl(
+      vendorLibraryPaths[index],
+      `vendor library exam ${exams[index].id}`,
+    );
+  }
+  const sitemapExamPaths = [
+    ...sitemap.matchAll(/<loc>https:\/\/examsturbo\.com(\/vendors\/[^<]+)<\/loc>/g),
+  ].map((match) => match[1]);
+  for (const url of sitemapExamPaths) await checkExamUrl(url, "sitemap");
+  for (const [source, destination] of Object.entries(redirects)) {
+    await checkExamUrl(destination, `redirect ${source}`);
+  }
+  for (const exam of exams) {
+    const canonical = examRoutes.pagePath(exam, vendors);
+    const vendor = vendorsById.get(exam.vendorId);
+    for (const oldSlug of examRoutes.legacySlugs(exam, vendor)) {
+      const oldPath = `/vendors/${exam.vendorSlug}/${oldSlug}`;
+      if (canonicalExamPaths.has(`${oldPath}/`)) continue;
+      if (oldPath !== canonical && redirects[oldPath] !== canonical) {
+        mismatches.push(
+          `previous exam URL ${oldPath} does not redirect to ${canonical}`,
+        );
+      }
+    }
+  }
+  const checkedVendorLibraryPaths = new Set(vendorLibraryPaths);
+  const checkedSitemapPaths = new Set(sitemapExamPaths);
+  for (const url of checkedVendorLibraryPaths) {
+    if (!checkedSitemapPaths.has(url)) {
+      mismatches.push(`vendor library URL ${url} is missing from sitemap`);
+    }
+  }
+  for (const url of checkedSitemapPaths) {
+    if (!checkedVendorLibraryPaths.has(url)) {
+      mismatches.push(`sitemap URL ${url} is not used by a vendor exam link`);
+    }
+  }
+  if (mismatches.length) {
+    throw new Error(
+      `Generated exam URL validation failed:\n${mismatches.map((item) => `- ${item}`).join("\n")}`,
+    );
+  }
   console.log(
-    `Generated ${outputs.length} exam pages, ${Object.keys(redirects).length} legacy redirects, and sitemap.xml.`,
+    `Generated ${outputs.length} exam pages, ${Object.keys(redirects).length} redirects, and sitemap.xml; verified all exam URLs.`,
   );
 }
 

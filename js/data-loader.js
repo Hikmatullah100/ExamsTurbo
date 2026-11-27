@@ -60,16 +60,10 @@ function toExam(row) {
   const article = window.buildExamArticle
     ? window.buildExamArticle(vendorName)
     : null;
-  const slug =
-    window.ExamRoutes?.examSlug(
-      { slug: row.slug || row.id, id: row.id, vendorId: row.vendor_id },
-      vendor,
-    ) ||
-    row.slug ||
-    row.id;
   return {
     id: row.id,
-    slug,
+    slug: row.slug || row.id,
+    sourceSlug: row.slug || row.id,
     vendorId: row.vendor_id,
     vendor: vendorName,
     examCode: row.exam_code || "",
@@ -94,7 +88,10 @@ async function loadExams() {
     .order("name");
   if (error) throw error;
   if (!data || !data.length) throw new Error("exams table is empty");
-  window.EXAMS = data.map(toExam);
+  const exams = data.map(toExam);
+  window.EXAMS = window.ExamRoutes
+    ? window.ExamRoutes.assignExamSlugs(exams, window.VENDORS || [])
+    : exams;
 }
 
 // Sirf published exam content (RLS bhi yehi guarantee karti hai). exam_id -> row

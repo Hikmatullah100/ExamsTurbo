@@ -48,6 +48,12 @@
     ...exam,
     coverImage: DEFAULT_EXAM_COVER,
   }));
+  if (window.ExamRoutes) {
+    EXAMS = window.ExamRoutes.assignExamSlugs(
+      EXAMS,
+      window.VENDORS || [],
+    );
+  }
 
   window.EXAMS = EXAMS;
 
