@@ -172,10 +172,18 @@ function normalizeExam(row, vendorsById) {
   }
   const sourceSlug = String(row.slug || id);
   const examCode = String(row.exam_code || "").trim();
-  const price = Number(row.price);
-  if (!Number.isFinite(price) || price < 0) {
+  const normalPrice = Number(row.price);
+  if (!Number.isFinite(normalPrice) || normalPrice < 0) {
     throw new Error(`Published exam ${id} has an invalid price.`);
   }
+  // A discount counts only if it is > 0 and below the normal price (same rule as the website and the payment function).
+  const sale =
+    row.sale_price === null || row.sale_price === undefined || row.sale_price === ""
+      ? null
+      : Number(row.sale_price);
+  const onSale = sale !== null && Number.isFinite(sale) && sale > 0 && sale < normalPrice;
+  const price = onSale ? sale : normalPrice;
+  const originalPrice = onSale ? normalPrice : null;
   const article = buildExamArticle(vendor.name);
   return {
     id,
@@ -197,6 +205,7 @@ function normalizeExam(row, vendorsById) {
         "2026",
     ),
     price,
+    originalPrice,
     accessType: String(row.access_type || "Instant Access"),
     coverImage: assetUrl(
       row.cover_image,
@@ -221,7 +230,9 @@ function renderArticle(article) {
     <p>${escapeHtml(article.final)}</p>`;
 }
 
-function pageHtml(exam, content) {
+function pageHtml(exam, content, options = {}) {
+  // template=true builds exam-template.html: one shared page that 404.html serves for exams that have no generated page yet.
+  const isTemplate = options.template === true;
   const title =
     String(content?.meta_title || "").trim() ||
     `${exam.examCode || exam.examTitle} Exam Preparation | ExamsTurbo`;
@@ -229,12 +240,15 @@ function pageHtml(exam, content) {
     String(content?.meta_description || "").trim() ||
     exam.detailDescription ||
     `Independent ${exam.vendor} ${exam.examCode} exam preparation resources and digital study materials on ExamsTurbo.`;
-  const examPath = examRoutes.pagePath(exam, [
-    { id: exam.vendorId, slug: exam.vendorSlug },
-  ]);
+  const examPath = isTemplate
+    ? ""
+    : examRoutes.pagePath(exam, [{ id: exam.vendorId, slug: exam.vendorSlug }]);
   const canonical = `${baseUrl}${examPath}`;
   const cover = absoluteUrl(exam.coverImage);
   const price = `$${exam.price.toFixed(2)}`;
+  const priceHtml = exam.originalPrice
+    ? `<s style="opacity:.6;font-size:.7em;margin-right:6px;font-weight:600">$${exam.originalPrice.toFixed(2)}</s>${price}<span style="margin-left:8px;padding:2px 7px;border-radius:6px;background:#ff8a1f;color:#071a2f;font-size:.55em;font-weight:800;vertical-align:middle">-${Math.round((1 - exam.price / exam.originalPrice) * 100)}%</span>`
+    : price;
   const breadcrumb = [
     { name: "Home", item: `${baseUrl}/` },
     { name: "Vendors", item: `${baseUrl}/vendors/` },
@@ -263,11 +277,11 @@ function pageHtml(exam, content) {
     <title>${escapeHtml(title)}</title>
     <meta name="description" content="${escapeHtml(description)}" />
     ${keywords}
-    <link rel="canonical" href="${escapeHtml(canonical)}" />
+    ${isTemplate ? '<meta name="robots" content="noindex" />' : `<link rel="canonical" href="${escapeHtml(canonical)}" />`}
     <meta property="og:type" content="product" />
     <meta property="og:title" content="${escapeHtml(title)}" />
     <meta property="og:description" content="${escapeHtml(description)}" />
-    <meta property="og:url" content="${escapeHtml(canonical)}" />
+    ${isTemplate ? "" : `<meta property="og:url" content="${escapeHtml(canonical)}" />`}
     <meta property="og:image" content="${escapeHtml(cover)}" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="${escapeHtml(title)}" />
@@ -283,7 +297,7 @@ function pageHtml(exam, content) {
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/exam-content.css" />
     <link rel="stylesheet" href="/css/exam-page.css" />
-    <script type="application/ld+json">${jsonForHtml({
+    ${isTemplate ? "" : `<script type="application/ld+json">${jsonForHtml({
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
       itemListElement: breadcrumb.map((item, index) => ({
@@ -292,7 +306,7 @@ function pageHtml(exam, content) {
         name: item.name,
         ...(item.item ? { item: item.item } : {}),
       })),
-    })}</script>
+    })}</script>`}
   </head>
   <body class="exam-page">
     <div class="promo-bar">
@@ -349,15 +363,15 @@ function pageHtml(exam, content) {
           <aside class="vendor-exam-purchase" id="examPurchasePanel">
             <div class="section-kicker">DIGITAL STUDY RESOURCE</div>
             <h2>Get Exam Study Guide</h2>
-            <div class="vendor-exam-price">${price}</div>
+            <div class="vendor-exam-price">${isTemplate ? "" : priceHtml}</div>
             <p class="vendor-exam-access"><i class="fa-solid fa-bolt"></i><span>${escapeHtml(exam.accessType)}</span></p>
-            <button class="btn btn-orange w-100" id="buyExamNow" type="button">Buy Now for ${price}</button>
-            <button class="btn btn-outline-light w-100" id="addExamToCart" type="button"><i class="fa-solid fa-cart-plus me-2"></i>Add to Cart</button>
+            <button class="btn btn-orange w-100" id="buyExamNow" type="button"${isTemplate ? " disabled" : ""}>${isTemplate ? "Loading..." : `Buy Now for ${price}`}</button>
+            <button class="btn btn-outline-light w-100" id="addExamToCart" type="button"${isTemplate ? " disabled" : ""}><i class="fa-solid fa-cart-plus me-2"></i>Add to Cart</button>
             <p class="vendor-exam-disclaimer">Independent educational resource. Payment is processed through the existing cart checkout.</p>
             <div class="vendor-exam-action-status" id="vendorExamActionStatus" role="status" aria-live="polite"></div>
           </aside>
         </div>
-        <article class="vendor-exam-article" id="vendorExamArticle">${renderArticle(exam.article)}</article>
+        <article class="vendor-exam-article" id="vendorExamArticle">${isTemplate ? "" : renderArticle(exam.article)}</article>
       </section>
     </main>
     <div id="drawerBackdrop" class="drawer-backdrop"></div>
@@ -393,7 +407,7 @@ function pageHtml(exam, content) {
       </div>
     </div>
     <script>window.dataReady = new Promise((resolve) => { window.__resolveData = resolve; setTimeout(resolve, 4000); });</script>
-    <script>window.EXAM_PAGE_DATA = ${jsonForHtml(pageData)};</script>
+    <script>window.EXAM_PAGE_DATA = ${jsonForHtml(isTemplate ? null : pageData)};</script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/js/exam-routes.js"></script>
     <script src="/js/exam-article.js"></script>
@@ -566,6 +580,40 @@ async function main() {
     await fs.writeFile(absolutePath, output.html, "utf8");
     generatedPages.add(output.relativePath);
   }
+
+  // Shared template for exams that were added after the last build (served by 404.html).
+  const templateExam = {
+    id: "",
+    slug: "",
+    vendorId: "",
+    vendorSlug: "",
+    vendor: "",
+    examCode: "",
+    examTitle: "Loading exam...",
+    shortDescription: "",
+    detailDescription: "",
+    questionCount: "",
+    updatedYear: "",
+    price: 0,
+    originalPrice: null,
+    accessType: "Instant Access",
+    coverImage: "/assets/exam-covers/aace-psp.jpeg",
+    benefits: [],
+    article: {
+      heading: "",
+      introduction: "",
+      label: "",
+      preparation: "",
+      whyChoose: [],
+      final: "",
+      benefits: [],
+    },
+  };
+  await fs.writeFile(
+    path.join(root, "exam-template.html"),
+    pageHtml(templateExam, null, { template: true }),
+    "utf8",
+  );
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${[...sitemapPaths]
     .sort()

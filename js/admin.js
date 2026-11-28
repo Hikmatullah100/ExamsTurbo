@@ -89,7 +89,7 @@ const SECTIONS = [
     table: "exams",
     order: ["name", true],
     canCreate: true,
-    cols: [["name", "Exam"], ["vendor_id", "Vendor"], ["exam_code", "Code"], ["price", "Price"], ["is_published", "Published"], ["updated_year", "Year"]],
+    cols: [["name", "Exam"], ["vendor_id", "Vendor"], ["exam_code", "Code"], ["price", "Price"], ["sale_price", "Discount"], ["is_published", "Published"], ["updated_year", "Year"]],
     quick: toggle("is_published", "Publish", "Unpublish"),
     fields: [
       { name: "vendor_id", label: "Vendor", type: "select", required: true, optionsFrom: { table: "vendors", value: "id", label: "name" }, hint: "Create the vendor first in the Vendors screen." },
@@ -101,7 +101,8 @@ const SECTIONS = [
       { name: "detail_description", label: "Detail description", type: "textarea", rows: 4 },
       { name: "question_count", label: "Question count", type: "text", hint: "For example 120+ Questions." },
       { name: "price", label: "Price ($)", type: "number", required: true, min: 0 },
-      { name: "updated_year", label: "Updated year", type: "text", hint: "If empty, defaults to 2026." },
+      { name: "sale_price", label: "Discount price ($)", type: "number", min: 0, hint: "Optional. Must be lower than the Price. The website shows the old price crossed out and charges this price. Leave empty for no discount." },
+      { name: "updated_year", label: "Updated date", type: "monthyear", hint: "Pick a date from the calendar or press Today. It is saved as Day Month Year, for example 28 November 2026." },
       { name: "access_type", label: "Access type", type: "text", hint: "If empty, defaults to Instant Access." },
       { name: "cover_image", label: "Cover image", type: "image", folder: "exam" },
       { name: "is_published", label: "Published (visible on the website)", type: "checkbox", default: true },
@@ -202,7 +203,7 @@ const SECTIONS = [
       { name: "message", label: "Message", type: "text", required: true, max: 200 },
       { name: "kind", label: "Kind (color)", type: "select", options: KINDS, required: true },
       { name: "link_text", label: "Link text", type: "text", hint: "For example Shop Now (optional)." },
-      { name: "link_url", label: "Link URL", type: "text", hint: "For example /vendors/ or https://..." },
+      { name: "link_url", label: "Link URL", type: "text", hint: "For example vendors.html or https://..." },
       { name: "sort_order", label: "Order (lower number first)", type: "number", omitEmpty: true },
       { name: "starts_at", label: "Starts at", type: "datetime" },
       { name: "ends_at", label: "Ends at", type: "datetime" },
@@ -488,6 +489,22 @@ $("tableBody").addEventListener("click", async (event) => {
 $("addNew").addEventListener("click", () => openForm(null));
 
 /* ---------------- form ---------------- */
+const MONTH_NAMES = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+const formatDate = (date) => `${date.getDate()} ${MONTH_NAMES[date.getMonth()]} ${date.getFullYear()}`;
+
+// Calendar / Today buttons for "monthyear" fields (event delegation: the form is re-rendered on every open).
+$("recordForm").addEventListener("change", (event) => {
+  const picker = event.target.closest("[data-date-for]");
+  if (!picker || !picker.value) return;
+  const [year, month, day] = picker.value.split("-").map(Number);
+  $(`f_${picker.dataset.dateFor}`).value = `${day} ${MONTH_NAMES[month - 1]} ${year}`;
+});
+$("recordForm").addEventListener("click", (event) => {
+  const button = event.target.closest("[data-today-for]");
+  if (!button) return;
+  $(`f_${button.dataset.todayFor}`).value = formatDate(new Date());
+});
+
 function fieldHTML(f, value, ctx) {
   const id = `f_${f.name}`;
   const hint = f.hint ? `<div class="form-text">${esc(f.hint)}</div>` : "";
@@ -522,6 +539,16 @@ function fieldHTML(f, value, ctx) {
       return `<div class="mb-3">${label}<input class="form-control" id="${id}" type="datetime-local" value="${esc(toLocalInput(value))}" ${req}>${hint}</div>`;
     case "array":
       return `<div class="mb-3">${label}<input class="form-control" id="${id}" type="text" value="${esc(Array.isArray(value) ? value.join(", ") : "")}">${hint}</div>`;
+    case "monthyear": {
+      // Text value stays editable; the calendar and the Today button fill it in as "D Month YYYY".
+      const initial = v || (ctx.isEdit ? "" : formatDate(new Date()));
+      return `<div class="mb-3">${label}
+        <div class="input-group">
+          <input class="form-control" id="${id}" type="text" value="${esc(initial)}" placeholder="28 November 2026" ${req}>
+          <input class="form-control" type="date" data-date-for="${f.name}" style="max-width:180px" aria-label="Pick a date from the calendar">
+          <button class="btn btn-outline-light" type="button" data-today-for="${f.name}">Today</button>
+        </div>${hint}</div>`;
+    }
     case "image":
       return `<div class="mb-3">${label}
         <input class="form-control mb-2" id="${id}" type="text" value="${esc(v)}" placeholder="Image link, or upload a file below">
@@ -624,6 +651,14 @@ $("recordForm").addEventListener("submit", async (event) => {
   saveBtn.disabled = true;
   try {
     const payload = collect();
+    if (
+      section.key === "exams" &&
+      payload.sale_price !== null &&
+      payload.sale_price !== undefined &&
+      !(payload.sale_price > 0 && payload.sale_price < Number(payload.price))
+    ) {
+      throw new Error("Discount price must be more than 0 and lower than the normal price. Leave it empty for no discount.");
+    }
     let result;
     if (editing) {
       result = await sb.from(section.table).update(payload).eq("id", editing.id);

@@ -13,6 +13,10 @@
     <p><a href="/vendors/">Browse the vendor library</a></p>
     <script>
     (async () => {
+      // Public (publishable) Supabase key, the same one the website already uses in js/supabase.js.
+      const SUPABASE_URL = "https://zfmjphrmmomqetwybnvf.supabase.co";
+      const SUPABASE_KEY = "sb_publishable_3E-kU_72T0qqWQ7bFEyTaQ_NHKqGCzK";
+
       const examMatch = window.location.pathname.match(
         /^\/exams\/([a-z0-9-]+)\/?$/i,
       );
@@ -24,6 +28,65 @@
       const oldPath = examMatch
         ? `/exams/${examMatch[1].toLowerCase()}`
         : window.location.pathname.replace(/\/+$/, "");
+
+      const loadScript = (src) =>
+        new Promise((resolve, reject) => {
+          const script = document.createElement("script");
+          script.src = src;
+          script.onload = resolve;
+          script.onerror = () => reject(new Error(`Could not load ${src}`));
+          document.head.appendChild(script);
+        });
+      const rest = async (table, query) => {
+        const response = await fetch(
+          `${SUPABASE_URL}/rest/v1/${table}?${query}`,
+          { headers: { apikey: SUPABASE_KEY } },
+        );
+        if (!response.ok) {
+          throw new Error(`${table} request failed (${response.status}).`);
+        }
+        return response.json();
+      };
+
+      // An exam that was added in the admin panel after the last site build has no
+      // generated page yet. Find it in the database and open it in the vendor library.
+      async function openFromDatabase(path) {
+        await loadScript("/js/exam-routes.js");
+        const [vendorRows, examRows] = await Promise.all([
+          rest("vendors", "select=id,slug,name&limit=1000"),
+          rest(
+            "exams",
+            "select=id,slug,vendor_id,exam_code,name&is_published=eq.true&order=name&limit=1000",
+          ),
+        ]);
+        const vendors = vendorRows.map((row) => ({
+          id: row.id,
+          slug: row.slug || row.id,
+          name: row.name,
+        }));
+        const exams = window.ExamRoutes.assignExamSlugs(
+          examRows.map((row) => ({
+            id: row.id,
+            slug: row.slug || row.id,
+            sourceSlug: row.slug || row.id,
+            vendorId: row.vendor_id,
+            examCode: row.exam_code || "",
+            examTitle: row.name,
+          })),
+          vendors,
+        );
+        const found = exams.find(
+          (exam) =>
+            window.ExamRoutes.pagePath(exam, vendors).replace(/\/+$/, "") ===
+            path,
+        );
+        if (!found) return false;
+        window.location.replace(
+          `/vendors/?vendor=${encodeURIComponent(found.vendorId)}&exam=${encodeURIComponent(found.id)}`,
+        );
+        return true;
+      }
+
       try {
         const response = await fetch("/exam-redirects.json", {
           cache: "no-store",
@@ -46,6 +109,31 @@
         if (examMatch) {
           sessionStorage.setItem("examTurboPendingPath", oldPath);
           window.location.replace("/vendors/");
+          return;
+        }
+
+        // 1) Show the shared exam page in place (the address stays the same). It finds the exam
+        //    in the database from the address, so a newly added exam works without a rebuild.
+        try {
+          const templateResponse = await fetch("/exam-template.html", {
+            cache: "no-store",
+          });
+          if (templateResponse.ok) {
+            const templateHtml = await templateResponse.text();
+            document.open();
+            document.write(templateHtml);
+            document.close();
+            return;
+          }
+        } catch (error) {
+          console.error("Could not load the exam page template:", error);
+        }
+
+        // 2) Fallback: open the exam in the vendor library popup.
+        try {
+          if (await openFromDatabase(oldPath)) return;
+        } catch (error) {
+          console.error("Could not look up the exam in the database:", error);
         }
       } catch (error) {
         console.error("Could not resolve the legacy exam URL:", error);
